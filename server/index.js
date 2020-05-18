@@ -9,10 +9,11 @@ const { addUser, removeUser, getUser, getUsersInRoom } = require("./users");
 const PORT = process.env.PORT || 5000;
 
 // const router = require("./router");
-app.use(bodyParser.json());
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
+app.use(bodyParser.json());
+
 
 // app.use(router);
 
