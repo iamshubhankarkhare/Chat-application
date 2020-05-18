@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import 'emoji-mart/css/emoji-mart.css'
-import { Picker, emojiIndex } from 'emoji-mart'
+import { emojiIndex } from 'emoji-mart'
 import './Input.css';
 import { Smile } from 'react-feather';
 import ReactTextareaAutocomplete from '@webscopeio/react-textarea-autocomplete';
