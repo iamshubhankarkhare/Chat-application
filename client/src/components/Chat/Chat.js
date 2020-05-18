@@ -5,6 +5,9 @@ import Messages from "../Messages/Messages";
 import TextContainer from '../TextContainer/TextContainer';
 import io from "socket.io-client";
 import Input from "../Input/Input";
+import 'emoji-mart/css/emoji-mart.css'
+import { Picker } from 'emoji-mart'
+
 
 import "./Chat.css";
 
@@ -16,12 +19,15 @@ const Chat = ({ location }) => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const [users, setUsers] = useState('');
-  const ENDPOINT = "https://hey-man.herokuapp.com/";
+  const [isEmoji, setIsEmoji] = useState(false)
+  const [msg, setMsg] = useState('')
+
+
+  const ENDPOINT = "http://localhost:5000/";
 
   useEffect(() => {
     const { name, room } = queryString.parse(location.search);
 
-    console.log(name, room);
     socket = io(ENDPOINT);
     console.log(socket);
 
@@ -45,6 +51,7 @@ const Chat = ({ location }) => {
     });
   }, [messages]);
 
+
   const sendMessage = (event) => {
     event.preventDefault();
 
@@ -52,18 +59,35 @@ const Chat = ({ location }) => {
       socket.emit("sendMessage", message, () => setMessage(""));
     }
   };
-
-  console.log(message, messages);
+  const handleEmoji = () => {
+    setIsEmoji(!isEmoji)
+  }
+  const addEmoji = (emoji) => {
+    const text = `${msg}${emoji.native}`
+    setMsg(text)
+    setMessage(text);
+    // setIsEmoji(false)
+  }
 
   return (
     <div className="outerContainer">
       <div className="container">
         <InfoBar room={room} />
+
         <Messages messages={messages} name={name} />
+        {(isEmoji) ? (<Picker set='apple'
+          onSelect={addEmoji}
+          title='Pick your emoji…' emoji='point_up'
+          style={{ position: 'relative', bottom: '0%' }}
+          i18n={{ search: 'Recherche', categories: { search: 'Résultats de recherche', recent: 'Récents' } }} />) : (null)}
         <Input
           message={message}
           setMessage={setMessage}
           sendMessage={sendMessage}
+          handleEmoji={handleEmoji}
+          setIsEmoji={setIsEmoji}
+          msg={msg}
+          setMsg={setMsg}
         />
       </div>
       <TextContainer users={users} />
