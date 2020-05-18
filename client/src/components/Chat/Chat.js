@@ -16,7 +16,7 @@ const Chat = ({ location }) => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const [users, setUsers] = useState('');
-  const ENDPOINT = "localhost:5000";
+  const ENDPOINT = "https://hey-man.herokuapp.com/";
 
   useEffect(() => {
     const { name, room } = queryString.parse(location.search);
@@ -41,8 +41,8 @@ const Chat = ({ location }) => {
     });
 
     socket.on("roomData", ({ users }) => {
-        setUsers(users);
-      });
+      setUsers(users);
+    });
   }, [messages]);
 
   const sendMessage = (event) => {
@@ -66,7 +66,7 @@ const Chat = ({ location }) => {
           sendMessage={sendMessage}
         />
       </div>
-      <TextContainer users={users}/>
+      <TextContainer users={users} />
     </div>
   );
 };
