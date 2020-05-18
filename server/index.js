@@ -2,6 +2,7 @@ const http = require("http");
 const express = require("express");
 const socketio = require("socket.io");
 const cors = require("cors");
+const path = require('path')
 
 const { addUser, removeUser, getUser, getUsersInRoom } = require("./users");
 
@@ -14,6 +15,15 @@ const server = http.createServer(app);
 const io = socketio(server);
 
 app.use(router);
+
+if (process.env.NODE_ENV === 'production') {
+
+  app.use(express.static(path.join(__dirname, '/../client/build')));
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../', 'client', 'build', 'index.html'));
+
+  })
+}
 
 io.on("connection", (socket) => {
   console.log("new mf in town");
@@ -39,8 +49,8 @@ io.on("connection", (socket) => {
         text: `${user.name} just joined the room`,
       });
 
-      io.to(user.room).emit('roomData', {room: user.room, users:getUsersInRoom(user,room)})
-   
+    io.to(user.room).emit('roomData', { room: user.room, users: getUsersInRoom(user, room) })
+
 
     callback();
   });
@@ -53,11 +63,11 @@ io.on("connection", (socket) => {
   });
 
   socket.on("disconnect", () => {
-    const user=removeUser(socket.id)
+    const user = removeUser(socket.id)
 
-    if(user){
-        io.to(user.room).emit('message',{user:'admin', text:`${user.name} just left!`})
-        io.to(user.room).emit('roomData', { room: user.room, users: getUsersInRoom(user.room)});
+    if (user) {
+      io.to(user.room).emit('message', { user: 'admin', text: `${user.name} just left!` })
+      io.to(user.room).emit('roomData', { room: user.room, users: getUsersInRoom(user.room) });
     }
   });
 });
