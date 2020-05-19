@@ -6,8 +6,7 @@ import { Smile } from 'react-feather';
 import ReactTextareaAutocomplete from '@webscopeio/react-textarea-autocomplete';
 
 
-const Input = ({ setMessage, sendMessage, message, handleEmoji, setIsEmoji, msg, setMsg }) => {
-
+const Input = ({ setMessage, sendMessage, message, handleEmoji, setIsEmoji, setMsg, handleKeydown }) => {
 
 
   const handleInput = (value) => {
@@ -32,8 +31,10 @@ const Input = ({ setMessage, sendMessage, message, handleEmoji, setIsEmoji, msg,
           className="input"
           name="newMessage"
           value={message}
+          onClick={() => setIsEmoji(false)}
           loadingComponent={() => <span>Loading</span>}
           onKeyPress={event => event.key === 'Enter' ? (event.preventDefault(), sendMessage(event)) : null}
+          onKeyDown={(e) => handleKeydown(e)}
           onChange={({ target: { value } }) => handleInput(value)}
           placeholder="Type a message..."
           trigger={{

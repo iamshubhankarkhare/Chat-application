@@ -12,15 +12,19 @@ import { Picker } from 'emoji-mart'
 import "./Chat.css";
 
 let socket;
+let timeout = undefined;
+
 
 const Chat = ({ location }) => {
   const [name, setName] = useState("");
+  const [isTyping, setIsTyping] = useState(false)
   const [room, setRoom] = useState("");
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const [users, setUsers] = useState('');
   const [isEmoji, setIsEmoji] = useState(false)
   const [msg, setMsg] = useState('')
+  const [typingUser, setTypingUser] = useState("")
 
 
   const ENDPOINT = "http://localhost:5000/";
@@ -45,16 +49,28 @@ const Chat = ({ location }) => {
       setMessages([...messages, message]);
     });
 
-    socket.on("roomData", ({ users }) => {
+    socket.on('display', (data) => {
+      if (data.typing === true) {
+        setIsTyping(true)
+        setTypingUser(data.user)
+      }
+      else {
+        setIsTyping(false)
+      }
+
+    })
+
+    socket.on("roomData", ({ users, room }) => {
       setUsers(users);
     });
-  }, [messages]);
+  }, [messages, name]);
 
 
   const sendMessage = (event) => {
     event.preventDefault();
 
     if (message) {
+      setIsTyping(false)
       socket.emit("sendMessage", message, () => setMessage(""));
     }
   };
@@ -66,6 +82,25 @@ const Chat = ({ location }) => {
     setMsg(text)
     setMessage(text);
     // setIsEmoji(false)
+  }
+  const typingTimeout = () => {
+    socket.emit('typing', { user: name, typing: false })
+    setIsTyping(false)
+  }
+
+  const handleKeydown = (e) => {
+
+    if (e.keyCode !== 13) {
+      socket.emit('typing', { user: name, typing: true })
+      clearTimeout(timeout)
+      timeout = setTimeout(typingTimeout, 4000)
+
+    }
+    else {
+      clearTimeout(timeout)
+      typingTimeout()
+
+    }
   }
 
   return (
@@ -79,6 +114,7 @@ const Chat = ({ location }) => {
           title='Pick your emoji…' emoji='point_up'
           style={{ position: 'relative', bottom: '0%' }}
           i18n={{ search: 'Recherche', categories: { search: 'Résultats de recherche', recent: 'Récents' } }} />) : (null)}
+        {(name === typingUser ? (null) : (isTyping ? (<h5>{typingUser} is typing..</h5>) : (null)))}
         <Input
           message={message}
           setMessage={setMessage}
@@ -87,6 +123,7 @@ const Chat = ({ location }) => {
           setIsEmoji={setIsEmoji}
           msg={msg}
           setMsg={setMsg}
+          handleKeydown={handleKeydown}
         />
       </div>
       <TextContainer users={users} />

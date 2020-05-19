@@ -49,9 +49,7 @@ io.on("connection", (socket) => {
         text: `${user.name} just joined the room`,
       });
 
-    io.to(user.room).emit('roomData', { room: user.room, users: getUsersInRoom(user, room) })
-
-
+    io.to(user.room).emit('roomData', { room: user.room, users: getUsersInRoom(user.room) });
     callback();
   });
 
@@ -61,6 +59,15 @@ io.on("connection", (socket) => {
 
     callback();
   });
+
+  socket.on('typing', (data) => {
+    if (data.typing === true) {
+      io.emit('display', data)
+    }
+    else {
+      io.emit('display', data)
+    }
+  })
 
   socket.on("disconnect", () => {
     const user = removeUser(socket.id)
