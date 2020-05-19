@@ -48,7 +48,7 @@ const Chat = ({ location }) => {
     socket.on("message", (message) => {
       setMessages([...messages, message]);
     });
-
+    //for istyping
     socket.on('display', (data) => {
       if (data.typing === true) {
         setIsTyping(true)
@@ -57,7 +57,6 @@ const Chat = ({ location }) => {
       else {
         setIsTyping(false)
       }
-
     })
 
     socket.on("roomData", ({ users, room }) => {
@@ -68,12 +67,13 @@ const Chat = ({ location }) => {
 
   const sendMessage = (event) => {
     event.preventDefault();
-
     if (message) {
       setIsTyping(false)
       socket.emit("sendMessage", message, () => setMessage(""));
     }
   };
+
+  // for emoji
   const handleEmoji = () => {
     setIsEmoji(!isEmoji)
   }
@@ -83,18 +83,17 @@ const Chat = ({ location }) => {
     setMessage(text);
     // setIsEmoji(false)
   }
+
+  //for typing
   const typingTimeout = () => {
     socket.emit('typing', { user: name, typing: false })
     setIsTyping(false)
   }
-
   const handleKeydown = (e) => {
-
     if (e.keyCode !== 13) {
       socket.emit('typing', { user: name, typing: true })
       clearTimeout(timeout)
       timeout = setTimeout(typingTimeout, 4000)
-
     }
     else {
       clearTimeout(timeout)
