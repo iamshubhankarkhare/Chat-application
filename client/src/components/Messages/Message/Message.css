@@ -1,10 +1,10 @@
 .messageBox {
-  background: #0AD5C1;
   border-radius: 20px;
   padding: 5px 20px;
   color: white;
   display: inline-block;
-  max-width: 80%;
+  max-width: 70%;
+  margin: 10px;
 }
 
 .messageText {
@@ -30,8 +30,9 @@
   display: flex;
   align-items: center;
   font-family: Helvetica;
-  color: #828282;
+  color: #dae1e7;
   letter-spacing: 0.3px;
+  font-size: small;
 }
 
 .pl-10 {
@@ -63,5 +64,5 @@
 }
 
 .backgroundLight {
-  background: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 1) 0%, rgba(246, 246, 246, 1) 47%, rgba(237, 237, 237, 1) 70%);
+  background: rgba(255, 255, 255, 0.9);
 }

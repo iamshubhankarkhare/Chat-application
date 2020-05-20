@@ -5,8 +5,7 @@ import closeIcon from '../../icons/closeIcon.png';
 
 import './InfoBar.css';
 
-const InfoBar = ({ room }) => {
-  const [isToggle, setIsToggle] = useState(true)
+const InfoBar = ({ room, setIsToggle, isToggle }) => {
   return (
     <Fragment>
       <div className="infoBar">
@@ -24,24 +23,7 @@ const InfoBar = ({ room }) => {
           <a href="/"><img src={closeIcon} alt="close icon" /></a>
         </div>
       </div>
-      {/* </div>
-      {isToggle ? (<div className="onlinePeople">
-        <h2>
-          jhgjhghjghjghjghjgjhghg
-        </h2>
-        <h2>
-          jhgjhghjghjghjghjgjhghg
-        </h2>
-        <h2>
-          jhgjhghjghjghjghjgjhghg
-        </h2>
-        <h2>
-          jhgjhghjghjghjghjgjhghg
-        </h2>
-        <h2>
-          jhgjhghjghjghjghjgjhghg
-        </h2>
-      </div>) : (null)} */}
+
     </Fragment>
   )
 };

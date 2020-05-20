@@ -1,6 +1,7 @@
 .messages {
   padding: 5% 0;
   overflow: auto;
+  overflow-x: hidden !important;
   flex: auto;
 }
 

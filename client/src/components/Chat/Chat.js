@@ -7,8 +7,11 @@ import io from "socket.io-client";
 import Input from "../Input/Input";
 import 'emoji-mart/css/emoji-mart.css'
 import { Picker } from 'emoji-mart'
-import { Link } from 'react-router-dom'
-import Join from '../Join/Join'
+import onlineIcon from '../../icons/onlineIcon.png';
+import Reveal from 'react-reveal/Reveal';
+import Fade from 'react-reveal/Fade';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+
 
 
 
@@ -28,6 +31,10 @@ const Chat = ({ location }) => {
   const [isEmoji, setIsEmoji] = useState(false)
   const [msg, setMsg] = useState('')
   const [typingUser, setTypingUser] = useState("")
+  const [isToggle, setIsToggle] = useState(false)
+  const [isCopied, setIsCopied] = useState('')
+
+
 
 
 
@@ -103,18 +110,55 @@ const Chat = ({ location }) => {
 
     }
   }
+  //for copying
+  const handleCopy = (e) => {
+    setIsCopied(e)
+    setTimeout(() => {
+      setIsCopied('')
+    }, 3000);
+  }
 
   return (
     <div className="outerContainer">
       <div className="container">
-        <InfoBar room={room} />
+        <InfoBar room={room} setIsToggle={setIsToggle} isToggle={isToggle} />
+        {/* {
+          isToggle ? (<div className={`onlinePeople ${isToggle ? "goRight" : ""}`}>
+            {users.map((user) => <h4>{user}</h4>)}
+
+          </div>) : (null)
+        } */}
+        {
+          isToggle ? (users
+            ? (<Fade right cascade >
+              <div className={`onlinePeople ${isToggle ? "" : ""}`} >
+                <h2>
+                  {users.map(({ name }) => (
+                    <div key={name} className="activeItem">
+                      {name}
+                      <img alt="Online Icon" src={onlineIcon} />
+                    </div>
+                  ))}
+                </h2>
+                <CopyToClipboard text={`Hey! Let's chat on https://hey-man.herokuapp.com/. Join my temporary room "${room}" and we're good to go.`}>
+                  <button onClick={() => handleCopy('invite')}>{isCopied === 'invite' ? "Copied!" : "Invite link"}</button>
+                </CopyToClipboard>
+
+              </div>
+            </Fade>
+
+            )
+            : null) : (null)
+        }
+
 
         <Messages messages={messages} name={name} />
-        {(isEmoji) ? (<Picker set='apple'
+
+        {/* {(isEmoji) ? (<Picker set='apple'
           onSelect={addEmoji}
           title='Pick your emoji…' emoji='point_up'
-          style={{ position: 'relative', bottom: '0%' }}
-          i18n={{ search: 'Recherche', categories: { search: 'Résultats de recherche', recent: 'Récents' } }} />) : (null)}
+          style={{ position: 'relative' }}
+          i18n={{ search: 'Recherche', categories: { search: 'Résultats de recherche', recent: 'Récents' } }} />) : (null)} */}
         {(name === typingUser ? (null) : (isTyping ? (<h5>{typingUser} is typing..</h5>) : (null)))}
         <Input
           message={message}
@@ -125,10 +169,12 @@ const Chat = ({ location }) => {
           msg={msg}
           setMsg={setMsg}
           handleKeydown={handleKeydown}
+          isEmoji={isEmoji}
+          addEmoji={addEmoji}
         />
       </div>
       {/* <TextContainer users={users} /> */}
-    </div>
+    </div >
   );
 };
 

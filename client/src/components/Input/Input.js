@@ -4,9 +4,11 @@ import { emojiIndex } from 'emoji-mart'
 import './Input.css';
 import { Smile } from 'react-feather';
 import ReactTextareaAutocomplete from '@webscopeio/react-textarea-autocomplete';
+import { Picker } from 'emoji-mart'
 
 
-const Input = ({ setMessage, sendMessage, message, handleEmoji, setIsEmoji, setMsg, handleKeydown }) => {
+
+const Input = ({ setMessage, sendMessage, message, handleEmoji, setIsEmoji, setMsg, handleKeydown, isEmoji, addEmoji }) => {
 
 
   const handleInput = (value) => {
@@ -18,8 +20,14 @@ const Input = ({ setMessage, sendMessage, message, handleEmoji, setIsEmoji, setM
 
   }
 
+
   return (
     <div>
+      {(isEmoji) ? (<Picker set='apple'
+        onSelect={addEmoji}
+        title='Pick your emoji…' emoji='point_up'
+        style={{ position: 'relative' }}
+        i18n={{ search: 'Recherche', categories: { search: 'Résultats de recherche', recent: 'Récents' } }} />) : (null)}
       <form className="form">
         <button
           type="button"
@@ -36,7 +44,7 @@ const Input = ({ setMessage, sendMessage, message, handleEmoji, setIsEmoji, setM
           onKeyPress={event => event.key === 'Enter' ? (event.preventDefault(), sendMessage(event)) : null}
           onKeyDown={(e) => handleKeydown(e)}
           onChange={({ target: { value } }) => handleInput(value)}
-          placeholder="Type a message..."
+          placeholder="message..."
           trigger={{
             ':': {
               dataProvider: token =>
@@ -51,7 +59,6 @@ const Input = ({ setMessage, sendMessage, message, handleEmoji, setIsEmoji, setM
             },
           }}
         />
-
 
         <button className="sendButton" onClick={e => sendMessage(e)}>Send</button>
       </form>
