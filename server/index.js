@@ -4,7 +4,7 @@ const socketio = require("socket.io");
 const cors = require("cors");
 const path = require('path')
 
-const { addUser, removeUser, getUser, getUsersInRoom } = require("./users");
+const { addUser, removeUser, getUser, getUsersInRoom, checkUser } = require("./users");
 
 const PORT = process.env.PORT || 5000;
 
@@ -67,6 +67,10 @@ io.on("connection", (socket) => {
     else {
       io.emit('display', data)
     }
+  })
+  socket.on('check', ({ name, room }, callback) => {
+    const error = checkUser({ name, room })
+    return callback(error)
   })
 
   socket.on("disconnect", () => {

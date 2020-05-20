@@ -10,12 +10,7 @@ const TextContainer = ({ users }) => {
   return (
 
     <div className="textContainer">
-      <div id="menu_button">
-        <input type="checkbox" id="menu_checkbox" onClick={() => setIsToggle(!isToggle)} />
-        <label htmlFor="menu_checkbox" id="menu_label">
-          <div id="menu_text_bar"></div>
-        </label>
-      </div>      {
+      {
         isToggle ? (users
           ? (
             <div>

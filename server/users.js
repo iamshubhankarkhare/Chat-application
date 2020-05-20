@@ -14,6 +14,12 @@ const addUser = ({ id, name, room }) => {
     users.push(user);
     return { user };
 };
+const checkUser = (({ name, room }) => {
+    const existingUser = users.find((user) => user.room === room && user.name === name);
+    if (existingUser) {
+        return { error: "Sorry! This username is already taken" }
+    }
+})
 
 const removeUser = (id) => {
     const index = users.findIndex((user) => user.id === id);
@@ -30,4 +36,4 @@ const getUsersInRoom = (room) => users.filter((user) => user.room === room);
 
 
 
-module.exports = { addUser, removeUser, getUser, getUsersInRoom }
+module.exports = { addUser, removeUser, getUser, getUsersInRoom, checkUser }

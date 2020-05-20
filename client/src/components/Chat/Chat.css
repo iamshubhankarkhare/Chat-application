@@ -12,8 +12,8 @@
   justify-content: space-between;
   background: transparent;
   border-radius: 8px;
-  height: 60%;
   width: 35%;
+  background: gray;
 }
 
 @media (min-width: 320px) and (max-width: 480px) {

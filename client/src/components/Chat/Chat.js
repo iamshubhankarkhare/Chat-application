@@ -7,6 +7,9 @@ import io from "socket.io-client";
 import Input from "../Input/Input";
 import 'emoji-mart/css/emoji-mart.css'
 import { Picker } from 'emoji-mart'
+import { Link } from 'react-router-dom'
+import Join from '../Join/Join'
+
 
 
 import "./Chat.css";
@@ -27,6 +30,7 @@ const Chat = ({ location }) => {
   const [typingUser, setTypingUser] = useState("")
 
 
+
   const ENDPOINT = "http://localhost:5000/";
 
   useEffect(() => {
@@ -38,9 +42,7 @@ const Chat = ({ location }) => {
     setRoom(room);
 
     socket.emit("join", { name, room }, (error) => {
-      if (error) {
-        alert(error);
-      }
+      console.log(error);
     });
   }, [ENDPOINT, location.search]);
 
@@ -125,7 +127,7 @@ const Chat = ({ location }) => {
           handleKeydown={handleKeydown}
         />
       </div>
-      <TextContainer users={users} />
+      {/* <TextContainer users={users} /> */}
     </div>
   );
 };
