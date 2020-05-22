@@ -2,13 +2,10 @@ import React, { useState, useEffect } from "react";
 import queryString from "query-string";
 import InfoBar from "../InfoBar/InfoBar";
 import Messages from "../Messages/Messages";
-import TextContainer from '../TextContainer/TextContainer';
 import io from "socket.io-client";
 import Input from "../Input/Input";
 import 'emoji-mart/css/emoji-mart.css'
-import { Picker } from 'emoji-mart'
 import onlineIcon from '../../icons/onlineIcon.png';
-import Reveal from 'react-reveal/Reveal';
 import Fade from 'react-reveal/Fade';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
