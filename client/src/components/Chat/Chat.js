@@ -137,7 +137,7 @@ const Chat = ({ location }) => {
                     </div>
                   ))}
                 </h2>
-                <CopyToClipboard text={`Hey! Let's chat on https://hey-man.herokuapp.com/. Join my temporary room "${room}" and we're good to go.`}>
+                <CopyToClipboard className="inviteBtn" text={`Hey! Let's chat on https://hey-man.herokuapp.com/. Join my temporary room "${room}" and we're good to go.`}>
                   <button onClick={() => handleCopy('invite')}>{isCopied === 'invite' ? "Copied!" : "Invite link"}</button>
                 </CopyToClipboard>
 
@@ -156,7 +156,7 @@ const Chat = ({ location }) => {
           title='Pick your emoji…' emoji='point_up'
           style={{ position: 'relative' }}
           i18n={{ search: 'Recherche', categories: { search: 'Résultats de recherche', recent: 'Récents' } }} />) : (null)} */}
-        {(name === typingUser ? (null) : (isTyping ? (<h5>{typingUser} is typing..</h5>) : (null)))}
+        {(name === typingUser ? (null) : (isTyping ? (<h5 className="typingMsg">{typingUser} is typing..</h5>) : (null)))}
         <Input
           message={message}
           setMessage={setMessage}

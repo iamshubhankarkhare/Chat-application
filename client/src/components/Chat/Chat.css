@@ -19,30 +19,41 @@
 }
 
 .onlinePeople {
-  height: calc(70% - 60px);
+  height: calc(67% - 60px);
   position: fixed;
   width: 250px;
   margin-top: 60px;
-  /* transform: translateX(-250px);
-  transition: transform 1000ms ease-in-out; */
-  background: #1a3f5c;
   z-index: 10;
+  background: -moz-linear-gradient(-45deg, #183850 0, #183850 25%, );
+  background: -webkit-linear-gradient(-45deg, #183850 0, #183850 35%, #192C46 70%, #22254C 100%, #22254C 100%);
   color: white;
   font-family: Poppins;
-}
-
-.onlinePeople h1 {
-  font-size: larger;
-  letter-spacing: 2px;
-  font-weight: 100;
-  margin-left: 5%;
+  display: flex;
+  flex-direction: column;
 }
 
 .onlinePeople h2 {
   font-size: medium;
   font-weight: bolder;
-  letter-spacing: 1px;
+  letter-spacing: 3px;
+  margin-left: 15%;
+}
+
+.typingMsg {
+  color: white;
+  letter-spacing: 2px;
+  font-weight: 100;
+  font-family: Poppins;
+  font-size: smaller;
+  margin-bottom: 0px;
   margin-left: 5%;
+}
+
+.inviteBtn {
+  padding: 10px;
+  letter-spacing: 3px;
+  align-self: center;
+  margin: 5%;
 }
 
 .activeItem {
@@ -54,10 +65,6 @@
   padding-left: 10px;
 }
 
-.goRight {
-  transform: translateX(0);
-}
-
 @media (min-width: 320px) and (max-width: 480px) {
   .outerContainer {
     height: 100%;
@@ -67,7 +74,7 @@
     height: 100%;
   }
   .onlinePeople {
-    height: 100%;
+    height: 97%;
   }
 }
 

@@ -2,12 +2,14 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #2979FF;
+  background: transparent;
   border-radius: 4px 4px 0 0;
   height: 60px;
   width: 100%;
   transition: 2s ease-in;
   position: relative;
+  font-family: Poppins;
+  letter-spacing: 1px;
 }
 
 .leftInnerContainer {
@@ -31,7 +33,7 @@
 
 #menu_button {
   width: 30px;
-  margin-right: 5px;
+  margin-right: 15px;
   overflow: hidden;
 }
 
@@ -44,6 +46,7 @@
   display: block;
   height: 25px;
   cursor: pointer;
+  padding-right: 5px;
 }
 
 #menu_label:before, #menu_label:after, #menu_text_bar {
@@ -74,11 +77,12 @@
 #menu_text_bar:before {
   content: 'Online';
   position: absolute;
+  width: 100%;
   top: 5px;
   right: 0;
   left: 0;
   color: #fff;
-  font-size: 10px;
+  font-size: 8px;
   font-weight: bold;
   font-family: Arial, Helvetica, sans-serif;
   text-align: center;

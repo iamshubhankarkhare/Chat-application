@@ -6,6 +6,7 @@
   padding: 0% 5%;
   justify-content: space-between;
   align-items: center;
+  align-content: center;
 }
 
 .emoji-mart {
@@ -18,13 +19,16 @@
   margin: 3%;
   background: transparent;
   color: white;
-  padding: 2%;
+  padding: 0%;
   width: 100%;
   font-size: 1.2em;
   overflow: hidden;
   outline: none;
   text-decoration: none;
   resize: none;
+  align-content: center;
+  letter-spacing: 1px;
+  font-weight: 100;
 }
 
 .input:focus, textarea:focus, select:focus {
@@ -86,5 +90,5 @@
   color: white;
   border: none;
   padding: 3px;
-  margin-right: 2px;
+  margin-right: 10px;
 }

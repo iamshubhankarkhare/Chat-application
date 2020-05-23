@@ -37,6 +37,7 @@ const Input = ({ setMessage, sendMessage, message, handleEmoji, setIsEmoji, setM
 
         <ReactTextareaAutocomplete
           className="input"
+          spellCheck="false"
           name="newMessage"
           value={message}
           onClick={() => setIsEmoji(false)}
