@@ -8,6 +8,8 @@ import 'emoji-mart/css/emoji-mart.css'
 import onlineIcon from '../../icons/onlineIcon.png';
 import Fade from 'react-reveal/Fade';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import ScrollToBottom from 'react-scroll-to-bottom';
+
 
 
 
@@ -36,6 +38,7 @@ const Chat = ({ location }) => {
 
 
   const ENDPOINT = "https://hey-man.herokuapp.com/";
+  //  const ENDPOINT = "http://localhost:5000/"
 
   useEffect(() => {
     const { name, room } = queryString.parse(location.search);
@@ -116,7 +119,7 @@ const Chat = ({ location }) => {
   }
 
   return (
-    <div className="outerContainer">
+    <ScrollToBottom className="outerContainer">
       <div className="container">
         <InfoBar room={room} setIsToggle={setIsToggle} isToggle={isToggle} />
         {/* {
@@ -170,7 +173,7 @@ const Chat = ({ location }) => {
           addEmoji={addEmoji}
         />
       </div>
-    </div>
+    </ScrollToBottom>
   );
 };
 

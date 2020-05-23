@@ -44,11 +44,16 @@
  .intro p {
    color: #ffffff;
    font-size: smaller !important;
-   margin-top: 35%;
+   margin-top: 45%;
    margin-bottom: 45%;
    font-weight: 70;
    letter-spacing: 1.5px;
    font-family: Poppins;
+ }
+
+ .intro {
+   align-self: center;
+   z-index: 1;
  }
 
  .button {
@@ -85,6 +90,9 @@
    .joinInnerContainer {
      width: 90%;
    }
+   .screen {
+     font-size: 0.5rem;
+   }
  }
 
  button:focus {
@@ -106,24 +114,17 @@
    height: 100vh;
    background: #00171f;
    display: flex;
-   align-items: center;
+   align-content: space-between;
    justify-content: center;
- }
-
- .overlay p {
-   font-size: 1.8rem;
-   font-weight: 80;
  }
 
  .screen {
    color: #ffffff;
    font-family: Poppins;
    position: absolute;
-   top: 20%;
-   align-self: center;
+   align-self: flex-start;
    justify-self: center;
-   left: 50%;
-   transform: translate(-50%, -50%);
+   font-size: 1.5rem;
  }
 
  .myBtn {

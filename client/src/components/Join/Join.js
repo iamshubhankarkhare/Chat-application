@@ -22,6 +22,8 @@ const Join = () => {
   let loginBtn = useRef(null)
 
   const ENDPOINT = "https://hey-man.herokuapp.com/";
+  //const ENDPOINT = "http://localhost:5000/"
+
   useEffect(() => {
     socket = io(ENDPOINT);
 
@@ -37,6 +39,8 @@ const Join = () => {
   }, []);
 
   const handleSubmit = (e) => {
+    console.log(h1Ref.current);
+
     socket.emit("check", { name, room }, (error) => {
       if (error) {
         setLoginError(error.error)
@@ -52,17 +56,17 @@ const Join = () => {
       if (!error && name && room) {
         setLoginError('')
         setSubmitting(true)
-        TweenMax.to(loginBtn, {
+        TweenMax.to(loginBtn.current, {
           y: "-150px",
           backgroundColor: "#003459",
         });
-        TweenMax.to(nameRef, 1.5, {
+        TweenMax.to(nameRef.current, 1.5, {
           opacity: 0
         });
-        TweenMax.to(roomRef, 1.5, {
+        TweenMax.to(roomRef.current, 1.5, {
           opacity: 0
         });
-        TweenMax.to(h1Ref, 1.5, {
+        TweenMax.to(h1Ref.current, 1.5, {
           opacity: 0
         });
         setTimeout(() => {
@@ -115,20 +119,20 @@ const Join = () => {
       </div>
       <div className="overlay-2" ref={element => { overlay2 = element }}></div>
       <div className="joinInnerContainer">
-        <h1 className="heading" ref={element => { h1Ref = element }}>Join</h1>
-        <div ref={element => { nameRef = element }}>
+        <h1 className="heading" ref={h1Ref}>Join</h1>
+        <div ref={nameRef}>
           {(loginError) ? (<h3 className="errorh3">{`${loginError}`}</h3>) : (null)}
           <input placeholder="Name" className="joinInput"
             type="text" required={true}
             onChange={(event) => setName(event.target.value)} />
         </div>
-        <div ref={element => { roomRef = element }}>
+        <div ref={roomRef}>
           <input placeholder="Room" className="joinInput mt-20" type="text" onChange={(event) => setRoom(event.target.value)}
-            onKeyDown={(e) => (e.keyCode === 13) ? (handleSubmit()) : (console.log("null"))} />
+            onKeyDown={(e) => (e.keyCode === 13) ? (handleSubmit()) : (null)} />
         </div>
 
         <button className={'button mt-20'} type="submit"
-          ref={element => { loginBtn = element }}
+          ref={loginBtn}
           onClick={() => handleSubmit()}>
           {submitting ? "Welcome" : "Sign In"}</button>
 
