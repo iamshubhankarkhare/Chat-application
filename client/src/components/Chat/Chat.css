@@ -54,6 +54,8 @@
   letter-spacing: 3px;
   align-self: center;
   margin: 5%;
+  background: transparent;
+  border: 1px solid #ffffff;
 }
 
 .activeItem {
