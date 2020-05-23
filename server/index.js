@@ -39,13 +39,13 @@ io.on("connection", (socket) => {
 
 
     socket.emit("message", {
-      user: "admin",
+      user: "Bot",
       text: `Hey ${user.name}!! Welcome to ${user.room}`,
     });
     socket.broadcast
       .to(user.room)
       .emit("message", {
-        user: "admin",
+        user: "Bot",
         text: `${user.name} just joined the room`,
       });
 
@@ -77,7 +77,7 @@ io.on("connection", (socket) => {
     const user = removeUser(socket.id)
 
     if (user) {
-      io.to(user.room).emit('message', { user: 'admin', text: `${user.name} just left!` })
+      io.to(user.room).emit('message', { user: 'Bot', text: `${user.name} just left!` })
       io.to(user.room).emit('roomData', { room: user.room, users: getUsersInRoom(user.room) });
     }
   });
