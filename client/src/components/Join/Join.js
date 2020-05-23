@@ -21,8 +21,8 @@ const Join = () => {
   let screen = useRef(null);
   let loginBtn = useRef(null)
 
-  const ENDPOINT = "https://hey-man.herokuapp.com/";
-  //const ENDPOINT = "http://localhost:5000/"
+  //const ENDPOINT = "https://hey-man.herokuapp.com/";
+  const ENDPOINT = "http://localhost:5000/"
 
   useEffect(() => {
     socket = io(ENDPOINT);

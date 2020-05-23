@@ -37,8 +37,8 @@ const Chat = ({ location }) => {
 
 
 
-  const ENDPOINT = "https://hey-man.herokuapp.com/";
-  //  const ENDPOINT = "http://localhost:5000/"
+  //const ENDPOINT = "https://hey-man.herokuapp.com/";
+  const ENDPOINT = "http://localhost:5000/"
 
   useEffect(() => {
     const { name, room } = queryString.parse(location.search);
@@ -119,7 +119,7 @@ const Chat = ({ location }) => {
   }
 
   return (
-    <ScrollToBottom className="outerContainer">
+    <div className="outerContainer">
       <div className="container">
         <InfoBar room={room} setIsToggle={setIsToggle} isToggle={isToggle} />
         {/* {
@@ -173,7 +173,7 @@ const Chat = ({ location }) => {
           addEmoji={addEmoji}
         />
       </div>
-    </ScrollToBottom>
+    </div>
   );
 };
 

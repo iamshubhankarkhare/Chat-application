@@ -92,6 +92,7 @@
    }
    .screen {
      font-size: 0.5rem;
+     margin-top: 15% !important;
    }
  }
 
@@ -124,6 +125,7 @@
    position: absolute;
    align-self: flex-start;
    justify-self: center;
+   margin-top: 5%;
    font-size: 1.5rem;
  }
 
