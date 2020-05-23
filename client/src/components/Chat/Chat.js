@@ -36,7 +36,7 @@ const Chat = ({ location }) => {
 
 
 
-  const ENDPOINT = "https://hey-man.herokuapp.com/";
+  const ENDPOINT = "https://buzz-and-go.herokuapp.com/";
   //const ENDPOINT = "http://localhost:5000/"
 
   useEffect(() => {
@@ -134,7 +134,7 @@ const Chat = ({ location }) => {
                     </div>
                   ))}
                 </h2>
-                <CopyToClipboard className="inviteBtn" text={`Hey! Let's chat on https://hey-man.herokuapp.com/. Join my temporary room "${room}" and we're good to go.`}>
+                <CopyToClipboard className="inviteBtn" text={`Hey! Let's chat on https://buzz-and-go.herokuapp.com/. Join my temporary room "${room}" and we're good to go.`}>
                   <button onClick={() => handleCopy('invite')}>{isCopied === 'invite' ? "Copied!" : "Invite link"}</button>
                 </CopyToClipboard>
 
