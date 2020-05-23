@@ -27,7 +27,15 @@ const Input = ({ setMessage, sendMessage, message, handleEmoji, setIsEmoji, setM
         onSelect={addEmoji}
         title='Pick your emoji…' emoji='point_up'
         style={{ position: 'relative' }}
-        i18n={{ search: 'Recherche', categories: { search: 'Résultats de recherche', recent: 'Récents' } }} />) : (null)}
+        emojiSize={20}
+        sheetSize={16}
+        emojiTooltip={false}
+        i18n={{
+          search: 'Recherche', categories: {
+            search: 'Search Results',
+            recent: 'Frequently Used',
+          }
+        }} />) : (null)}
       <form className="form">
         <button
           type="button"

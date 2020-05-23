@@ -8,7 +8,6 @@ import 'emoji-mart/css/emoji-mart.css'
 import onlineIcon from '../../icons/onlineIcon.png';
 import Fade from 'react-reveal/Fade';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import ScrollToBottom from 'react-scroll-to-bottom';
 
 
 
@@ -122,12 +121,7 @@ const Chat = ({ location }) => {
     <div className="outerContainer">
       <div className="container">
         <InfoBar room={room} setIsToggle={setIsToggle} isToggle={isToggle} />
-        {/* {
-          isToggle ? (<div className={`onlinePeople ${isToggle ? "goRight" : ""}`}>
-            {users.map((user) => <h4>{user}</h4>)}
 
-          </div>) : (null)
-        } */}
         {
           isToggle ? (users
             ? (<Fade right cascade >

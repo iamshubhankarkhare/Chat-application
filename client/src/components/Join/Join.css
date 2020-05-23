@@ -138,7 +138,7 @@
    top: auto;
  }
 
- button {
+ .myBtn {
    display: block;
    padding: 24px 48px;
    font-family: Poppins;
