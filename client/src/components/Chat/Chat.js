@@ -37,8 +37,8 @@ const Chat = ({ location }) => {
 
 
 
-  //const ENDPOINT = "https://hey-man.herokuapp.com/";
-  const ENDPOINT = "http://localhost:5000/"
+  const ENDPOINT = "https://hey-man.herokuapp.com/";
+  //const ENDPOINT = "http://localhost:5000/"
 
   useEffect(() => {
     const { name, room } = queryString.parse(location.search);
