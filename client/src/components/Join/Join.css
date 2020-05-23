@@ -63,6 +63,11 @@
    width: 100%;
  }
 
+ .button:active {
+   width: 80%;
+   background-color: #003459;
+ }
+
  .errorh3 {
    color: rgb(197, 55, 55);
    font-size: medium;

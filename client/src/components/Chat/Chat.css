@@ -15,7 +15,7 @@
   border-radius: 8px;
   height: 70%;
   width: 40%;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 .onlinePeople {

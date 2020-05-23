@@ -9,7 +9,6 @@ let socket;
 const Join = () => {
   const [name, setName] = useState("");
   const [room, setRoom] = useState("")
-  const [isTaken, setIsTaken] = useState(false)
   const [loginError, setLoginError] = useState('')
   const [submitting, setSubmitting] = useState(false)
 
@@ -31,7 +30,6 @@ const Join = () => {
 
   useEffect(() => {
     setLoginError('')
-    setIsTaken(false)
     setSubmitting(false)
     setName('')
     setRoom('')
@@ -39,38 +37,39 @@ const Join = () => {
   }, []);
 
   const handleSubmit = (e) => {
-    if (!name || !room) {
-      setLoginError("Please fill all the fields")
-      setSubmitting(false)
-      return
-    }
-    if (name && room && !loginError) {
-      setSubmitting(true)
-      TweenMax.to(loginBtn, {
-        y: "-150px",
-        backgroundColor: "#003459",
+    socket.emit("check", { name, room }, (error) => {
+      if (error) {
+        setLoginError(error.error)
+        setSubmitting(false)
 
-      });
-      TweenMax.to([h1Ref, nameRef, roomRef], 1.5, {
-        opacity: 0
-      });
-    }
-    setTimeout(() => {
-      socket.emit("check", { name, room }, (error) => {
-        if (error) {
-          setLoginError(error.error)
-          setIsTaken(true)
-          setSubmitting(false)
-        }
-        if (!error && name && room) {
+      }
+      if (!name || !room) {
+        setLoginError("Please fill all the fields")
+        setSubmitting(false)
+        return
+      }
+
+      if (!error && name && room) {
+        setLoginError('')
+        setSubmitting(true)
+        TweenMax.to(loginBtn, {
+          y: "-150px",
+          backgroundColor: "#003459",
+        });
+        TweenMax.to(nameRef, 1.5, {
+          opacity: 0
+        });
+        TweenMax.to(roomRef, 1.5, {
+          opacity: 0
+        });
+        TweenMax.to(h1Ref, 1.5, {
+          opacity: 0
+        });
+        setTimeout(() => {
           window.location.replace(`/chat?name=${name}&room=${room}`)
-          setIsTaken(false)
-          setLoginError('')
-          setSubmitting(false)
-        }
-      });
-    }, 2000);
-
+        }, 2000);
+      }
+    });
   }
   const fadeOut = () => {
     console.log("pressed");
@@ -118,7 +117,7 @@ const Join = () => {
       <div className="joinInnerContainer">
         <h1 className="heading" ref={element => { h1Ref = element }}>Join</h1>
         <div ref={element => { nameRef = element }}>
-          {(isTaken || loginError) ? (<h3 className="errorh3">{`${loginError}`}</h3>) : (null)}
+          {(loginError) ? (<h3 className="errorh3">{`${loginError}`}</h3>) : (null)}
           <input placeholder="Name" className="joinInput"
             type="text" required={true}
             onChange={(event) => setName(event.target.value)} />

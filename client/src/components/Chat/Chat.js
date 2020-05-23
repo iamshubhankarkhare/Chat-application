@@ -170,8 +170,7 @@ const Chat = ({ location }) => {
           addEmoji={addEmoji}
         />
       </div>
-      {/* <TextContainer users={users} /> */}
-    </div >
+    </div>
   );
 };
 

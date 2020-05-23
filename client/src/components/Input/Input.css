@@ -8,6 +8,11 @@
   align-items: center;
 }
 
+.emoji-mart {
+  width: 288px;
+  margin-left: 20px;
+}
+
 .input {
   border: none;
   margin: 3%;
@@ -80,4 +85,6 @@
   background: transparent;
   color: white;
   border: none;
+  padding: 3px;
+  margin-right: 2px;
 }
