@@ -15,6 +15,7 @@
   border-radius: 8px;
   height: 70%;
   width: 40%;
+
   overflow: hidden;
 }
 
@@ -24,11 +25,19 @@
   width: 250px;
   margin-top: 60px;
   z-index: 10;
-  background: -moz-linear-gradient(-45deg, #183850 0, #183850 25%, );
-  background: -webkit-linear-gradient(-45deg, #183850 0, #183850 35%, #192C46 70%, #22254C 100%, #22254C 100%);
+  background: -moz-linear-gradient(-45deg, #183850 0, #183850 25%);
+  background: -webkit-linear-gradient(
+    -45deg,
+    #183850 0,
+    #183850 35%,
+    #192c46 70%,
+    #22254c 100%,
+    #22254c 100%
+  );
   color: white;
   font-family: Poppins;
   display: flex;
+
   flex-direction: column;
 }
 
@@ -53,11 +62,37 @@
   padding: 10px;
   letter-spacing: 3px;
   align-self: center;
+  transform: scale(1.5);
   margin: 5%;
-  background: transparent;
-  border: 1px solid #ffffff;
+  position: relative;
+  width: 80%;
+  border: none;
+  color: white;
+  padding: 1rem;
+  background-color: transparent;
+  border: 2px solid white;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
+  transition: 0.5s ease-in;
 }
-
+.inviteBtn:hover {
+  border: 2px dashed white;
+  
+}
+.copiedBtn {
+  padding: 10px;
+  letter-spacing: 3px;
+  align-self: center;
+  margin: 5%;
+  position: relative;
+  width: 80%;
+  border: none;
+  padding: 1rem;
+  transition: 0.5s ease-in-out;
+  background-image: none;
+  background-color: white;
+  color: black;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
+}
 .activeItem {
   display: flex;
   align-items: center;
