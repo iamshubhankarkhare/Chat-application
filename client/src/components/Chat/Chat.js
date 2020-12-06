@@ -27,8 +27,8 @@ const Chat = ({ location }) => {
   const [isToggle, setIsToggle] = useState(false);
   const [isCopied, setIsCopied] = useState("");
 
-  const ENDPOINT = "https://buzz-and-go.herokuapp.com/";
-  //const ENDPOINT = "http://localhost:5000/"
+  // const ENDPOINT = "https://buzz-and-go.herokuapp.com/";
+  const ENDPOINT = "http://localhost:5000/"
 
   useEffect(() => {
     const { name, room } = queryString.parse(location.search);
@@ -45,6 +45,8 @@ const Chat = ({ location }) => {
 
   useEffect(() => {
     socket.on("message", (message) => {
+
+      console.log("messgea coming is ", message);
       setMessages([...messages, message]);
     });
     //for istyping
@@ -65,8 +67,16 @@ const Chat = ({ location }) => {
   const sendMessage = (event) => {
     event.preventDefault();
     if (message) {
+      // message.time = new Date().toISOString();
       setIsTyping(false);
-      socket.emit("sendMessage", message, () => setMessage(""));
+      socket.emit(
+        "sendMessage",
+        {
+          message: message,
+          time: new Date().getHours() + ":" + new Date().getMinutes(),
+        },
+        () => setMessage("")
+      );
     }
   };
 
