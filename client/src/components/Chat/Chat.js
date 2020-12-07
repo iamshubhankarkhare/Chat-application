@@ -1,34 +1,34 @@
-import React, { useState, useEffect } from "react";
-import queryString from "query-string";
-import InfoBar from "../InfoBar/InfoBar";
-import Messages from "../Messages/Messages";
-import io from "socket.io-client";
-import Input from "../Input/Input";
-import "emoji-mart/css/emoji-mart.css";
-import onlineIcon from "../../icons/onlineIcon.png";
-import Fade from "react-reveal/Fade";
-import { CopyToClipboard } from "react-copy-to-clipboard";
+import React, { useState, useEffect } from 'react';
+import queryString from 'query-string';
+import InfoBar from '../InfoBar/InfoBar';
+import Messages from '../Messages/Messages';
+import io from 'socket.io-client';
+import Input from '../Input/Input';
+import 'emoji-mart/css/emoji-mart.css';
+import onlineIcon from '../../icons/onlineIcon.png';
+import Fade from 'react-reveal/Fade';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
-import "./Chat.css";
+import './Chat.css';
 
 let socket;
 let timeout = undefined;
 
 const Chat = ({ location }) => {
-  const [name, setName] = useState("");
+  const [name, setName] = useState('');
   const [isTyping, setIsTyping] = useState(false);
-  const [room, setRoom] = useState("");
-  const [message, setMessage] = useState("");
+  const [room, setRoom] = useState('');
+  const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
-  const [users, setUsers] = useState("");
+  const [users, setUsers] = useState('');
   const [isEmoji, setIsEmoji] = useState(false);
-  const [msg, setMsg] = useState("");
-  const [typingUser, setTypingUser] = useState("");
+  const [msg, setMsg] = useState('');
+  const [typingUser, setTypingUser] = useState('');
   const [isToggle, setIsToggle] = useState(false);
-  const [isCopied, setIsCopied] = useState("");
+  const [isCopied, setIsCopied] = useState('');
 
-  const ENDPOINT = "https://buzz-and-go.herokuapp.com/";
-  //const ENDPOINT = "http://localhost:5000/"
+  // const ENDPOINT = "https://buzz-and-go.herokuapp.com/"; Hosted Server Link
+  const ENDPOINT = 'http://localhost:5000/';
 
   useEffect(() => {
     const { name, room } = queryString.parse(location.search);
@@ -38,17 +38,17 @@ const Chat = ({ location }) => {
     setName(name);
     setRoom(room);
 
-    socket.emit("join", { name, room }, (error) => {
+    socket.emit('join', { name, room }, (error) => {
       console.log(error);
     });
   }, [ENDPOINT, location.search]);
 
   useEffect(() => {
-    socket.on("message", (message) => {
+    socket.on('message', (message) => {
       setMessages([...messages, message]);
     });
     //for istyping
-    socket.on("display", (data) => {
+    socket.on('display', (data) => {
       if (data.typing === true) {
         setIsTyping(true);
         setTypingUser(data.user);
@@ -57,7 +57,7 @@ const Chat = ({ location }) => {
       }
     });
 
-    socket.on("roomData", ({ users, room }) => {
+    socket.on('roomData', ({ users, room }) => {
       setUsers(users);
     });
   }, [messages, name]);
@@ -66,7 +66,7 @@ const Chat = ({ location }) => {
     event.preventDefault();
     if (message) {
       setIsTyping(false);
-      socket.emit("sendMessage", message, () => setMessage(""));
+      socket.emit('sendMessage', message, () => setMessage(''));
     }
   };
 
@@ -83,12 +83,12 @@ const Chat = ({ location }) => {
 
   //for typing
   const typingTimeout = () => {
-    socket.emit("typing", { user: name, typing: false });
+    socket.emit('typing', { user: name, typing: false });
     setIsTyping(false);
   };
   const handleKeydown = (e) => {
     if (e.keyCode !== 13) {
-      socket.emit("typing", { user: name, typing: true });
+      socket.emit('typing', { user: name, typing: true });
       clearTimeout(timeout);
       timeout = setTimeout(typingTimeout, 4000);
     } else {
@@ -100,7 +100,7 @@ const Chat = ({ location }) => {
   const handleCopy = (e) => {
     setIsCopied(e);
     setTimeout(() => {
-      setIsCopied("");
+      setIsCopied('');
     }, 3000);
   };
 
@@ -112,7 +112,7 @@ const Chat = ({ location }) => {
         {isToggle ? (
           users ? (
             <Fade right cascade>
-              <div className={`onlinePeople ${isToggle ? "" : ""}`}>
+              <div className={`onlinePeople ${isToggle ? '' : ''}`}>
                 <h2>
                   {users.map(({ name }) => (
                     <div key={name} className="activeItem">
@@ -126,11 +126,11 @@ const Chat = ({ location }) => {
                 >
                   <button
                     className={
-                      isCopied === "invite" ? "copiedBtn" : "inviteBtn"
+                      isCopied === 'invite' ? 'copiedBtn' : 'inviteBtn'
                     }
-                    onClick={() => handleCopy("invite")}
+                    onClick={() => handleCopy('invite')}
                   >
-                    {isCopied === "invite" ? "Copied!" : "Invite link"}
+                    {isCopied === 'invite' ? 'Copied!' : 'Invite link'}
                   </button>
                 </CopyToClipboard>
               </div>
