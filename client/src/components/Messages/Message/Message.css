@@ -16,7 +16,7 @@
   background: white;
   position: absolute;
   bottom: -1rem;
-  right: -15px;
+  right: -13px;
   top: calc(50% - 0.5rem);
   clip-path: polygon(0 0, 100% 50%, 0 100%);
 }
