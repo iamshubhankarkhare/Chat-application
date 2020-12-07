@@ -45,8 +45,6 @@ const Chat = ({ location }) => {
 
   useEffect(() => {
     socket.on("message", (message) => {
-
-      console.log("messgea coming is ", message);
       setMessages([...messages, message]);
     });
     //for istyping
