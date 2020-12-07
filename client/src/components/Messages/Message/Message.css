@@ -25,7 +25,7 @@
   display: inline-block;
   width: 1rem;
   height: 1rem;
-  background: #1ad0e8;
+  background: rgba(25, 147, 147, 0.2);
   position: absolute;
   bottom: -1rem;
   left: -16px;
@@ -46,6 +46,9 @@
   position: absolute;
   bottom: 3px;
   right: 10px;
+}
+.justifyEnd .timeStamp{
+  color: lightgray;
 }
 .messageText img {
   vertical-align: middle;
@@ -92,7 +95,7 @@
 }
 
 .backgroundBlue {
-  background-color: #1ad0e8;
+  background-color: rgba(25, 147, 147, 0.2);
 }
 
 .backgroundLight {
