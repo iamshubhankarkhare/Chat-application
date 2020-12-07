@@ -1,116 +1,130 @@
 .form {
-  display: flex;
-  border: 1px solid white;
-  margin: 5%;
-  border-radius: 35px;
-  padding: 0% 5%;
-  justify-content: space-between;
-  align-items: center;
-  align-content: center;
-  margin-bottom: 10% !important;
+    display: flex;
+    border: 1px solid white;
+    margin: 5%;
+    border-radius: 35px;
+    padding: 0% 5%;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    margin-bottom: 10% !important;
 }
 
 .emoji-mart {
-  width: 188px !important;
-  height: 250px !important;
-  margin-left: 20px;
-  padding: 0px;
-  font-size: 0.5rem !important;
+    transform: translateY(-100%);
+    position: fixed !important;
+    width: 188px !important;
+    height: 250px !important;
+    margin-left: 20px;
+    padding: 0px;
+    font-size: 0.5rem !important;
+    transition: transform 1s;
+}
+
+.emoji-mart :hover {
+    transform: translateY(0%);
 }
 
 .emoji-mart-scroll {
-  height: 200px !important;
+    height: 200px !important;
 }
 
 .emoji-mart-preview {
-  display: none;
+    display: none;
 }
 
 .emoji-mart-bar {
-  display: none;
+    display: none;
 }
 
 .input {
-  border: none;
-  margin: 3%;
-  background: transparent;
-  color: white;
-  padding: 0%;
-  width: 100%;
-  font-size: 1.2em;
-  overflow: hidden;
-  outline: none;
-  text-decoration: none;
-  resize: none;
-  align-content: center;
-  letter-spacing: 1px;
-  font-weight: 100;
+    border: none;
+    margin: 3%;
+    background: transparent;
+    color: white;
+    padding: 0%;
+    width: 100%;
+    font-size: 1.2em;
+    overflow: hidden;
+    outline: none;
+    text-decoration: none;
+    resize: none;
+    align-content: center;
+    letter-spacing: 1px;
+    font-weight: 100;
 }
 
-.input:focus, textarea:focus, select:focus {
-  outline: none;
+.input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
 }
 
 .rta {
-  width: 70%;
-  flex-grow: 1;
-  position: relative;
-  display: flex;
-  flex-direction: column;
+    width: 70%;
+    flex-grow: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 .rta__autocomplete {
-  position: absolute;
-  width: 250px;
-  background-color: white;
-  border: 1px solid #ccc;
-  border-radius: 25px;
+    position: absolute;
+    width: 250px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 25px;
 }
 
 .rta__autocomplete ul {
-  list-style: none;
-  text-align: left;
-  margin-bottom: 0;
+    list-style: none;
+    text-align: left;
+    margin-bottom: 0;
 }
 
 .rta__autocomplete li {
-  margin-bottom: 5px;
-  padding: 3px 20px;
-  cursor: pointer;
+    margin-bottom: 5px;
+    padding: 3px 20px;
+    cursor: pointer;
 }
 
 .rta__autocomplete li:hover {
-  background-color: skyblue;
+    background-color: skyblue;
 }
 
 .sendButton {
-  color: #fff !important;
-  text-transform: uppercase;
-  font-weight: bolder;
-  text-decoration: none;
-  background: transparent;
-  border: none;
-  border-radius: 10%;
-  width: 20%;
+    transform: translateX(40%);
+    background-color: transparent;
+    border: none;
+    transition: transform 1s;
+}
+.sendButton:hover{
+    transform: translateX(50%);
 }
 
-.rta_textarea {
-  text-align: center;
-  position: fixed;
-  resize: none;
+.rta__textarea {
+    text-align: left;
+    resize: none;
+    transform: translateY(15%);
 }
 
 .toggle-emoji {
-  background: transparent;
-  color: white;
-  border: none;
-  padding: 3px;
-  margin-right: 10px;
+    background: transparent;
+    color: white;
+    border: none;
+    padding: 3px;
+    margin-right: 10px;
+    transform: translateY(0%);
+    transition: transform 0.5s;
+}
+
+.toggle-emoji:hover {
+    transform: translateY(-10%);
 }
 
 @media (min-width: 320px) and (max-width: 480px) {
-  .form {
-    margin-bottom: 20% !important;
-    margin-top: 12px;
-  }
+    .form {
+        margin-bottom: 20% !important;
+        margin-top: 12px;
+    }
 }
