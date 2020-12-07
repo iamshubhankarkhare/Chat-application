@@ -1,178 +1,180 @@
- html, body {
-   font-family: 'Roboto', sans-serif;
-   padding: 0;
-   margin: 0;
-   overflow: hidden;
- }
+html,
+body {
+  font-family: "Roboto", sans-serif;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
 
- #root {
-   height: 100vh;
- }
+#root {
+  height: 100vh;
+}
 
- * {
-   box-sizing: border-box;
- }
+* {
+  box-sizing: border-box;
+}
 
- .joinOuterContainer {
-   display: flex;
-   justify-content: center;
-   text-align: center;
-   height: 100vh;
-   align-items: center;
-   background-color: #ffffff;
- }
+.joinOuterContainer {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  height: 100vh;
+  align-items: center;
+  background-color: #ffffff;
+}
 
- .joinInnerContainer {
-   width: 20%;
- }
+.joinInnerContainer {
+  width: 20%;
+}
 
- .joinInput {
-   border-radius: 0;
-   border: 1px solid #00a8e8;
-   padding: 15px 20px;
-   width: 100%;
- }
+.joinInput {
+  border-radius: 0;
+  border: 1px solid #00a8e8;
+  padding: 15px 20px;
+  width: 100%;
+}
 
- .heading {
-   color: #003459;
-   font-size: 2.5em;
-   padding-bottom: 8px;
-   border-bottom: 2px solid #003459;
-   font-family: Poppins;
- }
+.heading {
+  color: #003459;
+  font-size: 2.5em;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #003459;
+  font-family: Poppins;
+}
 
- .intro p {
-   color: #ffffff;
-   font-size: smaller !important;
-   margin-top: 45%;
-   margin-bottom: 45%;
-   font-weight: 70;
-   letter-spacing: 1.5px;
-   font-family: Poppins;
- }
+.intro p {
+  color: #ffffff;
+  font-size: smaller !important;
+  margin-top: 80%;
+  margin-bottom: 45%;
+  font-weight: 70;
+  letter-spacing: 1.5px;
+  font-family: Poppins;
+}
 
- .intro {
-   align-self: center;
-   z-index: 1;
- }
+.intro {
+  align-self: center;
+  z-index: 1;
+}
 
- .button {
-   color: #fff !important;
-   text-transform: uppercase;
-   text-decoration: none;
-   background: #007ea7;
-   padding: 20px;
-   border-radius: 5px;
-   display: inline-block;
-   border: none;
-   width: 100%;
- }
+.button {
+  color: #fff !important;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: #007ea7;
+  padding: 20px;
+  border-radius: 5px;
+  display: inline-block;
+  border: none;
+  width: 100%;
+}
 
- .button:active {
-   width: 80%;
-   background-color: #003459;
- }
+.button:active {
+  width: 80%;
+  background-color: #003459;
+}
 
- .errorh3 {
-   color: rgb(197, 55, 55);
-   font-size: medium;
-   font-weight: 100;
- }
+.errorh3 {
+  color: rgb(197, 55, 55);
+  font-size: medium;
+  font-weight: 100;
+}
 
- .mt-20 {
-   margin-top: 20px;
- }
+.mt-20 {
+  margin-top: 20px;
+}
 
- @media (min-width: 320px) and (max-width: 480px) {
-   .joinOuterContainer {
-     height: 100%;
-   }
-   .joinInnerContainer {
-     width: 90%;
-   }
-   .screen {
-     font-size: 0.5rem;
-     margin-top: 15% !important;
-   }
- }
+@media (min-width: 320px) and (max-width: 480px) {
+  .joinOuterContainer {
+    height: 100%;
+  }
+  .joinInnerContainer {
+    width: 90%;
+  }
+  .screen {
+    font-size: 1.5rem !important;
+    margin-top: 15% !important;
+  }
+}
 
- button:focus {
-   outline: 0;
- }
+button:focus {
+  outline: 0;
+}
 
- .overlay-2 {
-   z-index: 0;
-   position: absolute;
-   width: 100%;
-   height: 100%;
-   background: #003459;
- }
+.overlay-2 {
+  z-index: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #003459;
+}
 
- .overlay {
-   z-index: 1;
-   position: absolute;
-   width: 100%;
-   height: 100vh;
-   background: #00171f;
-   display: flex;
-   align-content: space-between;
-   justify-content: center;
- }
+.overlay {
+  z-index: 1;
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  background: #00171f;
+  display: flex;
+  align-content: space-between;
+  justify-content: center;
+}
 
- .screen {
-   color: #ffffff;
-   font-family: Poppins;
-   position: absolute;
-   align-self: flex-start;
-   justify-self: center;
-   margin-top: 5%;
-   font-size: 1.5rem;
- }
+.screen {
+  color: #ffffff;
+  font-family: Poppins;
+  position: absolute;
+  align-self: flex-start;
+  justify-self: center;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  font-size: 2.2rem;
+}
 
- .myBtn {
-   font-family: Poppins;
-   position: absolute;
-   top: 50%;
-   left: 50%;
-   transform: translate(-50%, -50%);
-   top: auto;
- }
+.myBtn {
+  font-family: Poppins;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  top: auto;
+}
 
- .myBtn {
-   display: block;
-   padding: 24px 48px;
-   font-family: Poppins;
-   font-weight: 700;
-   font-size: 12px;
-   letter-spacing: 6px;
-   color: #fff;
-   border: 2px solid #fff;
-   text-transform: uppercase;
-   outline: none;
-   overflow: hidden;
-   background: none;
-   z-index: 1;
-   cursor: crosshair;
-   transition: 0.8s ease-out;
- }
+.myBtn {
+  display: block;
+  padding: 24px 48px;
+  font-family: Poppins;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 6px;
+  color: #fff;
+  border: 2px solid #fff;
+  text-transform: uppercase;
+  outline: none;
+  overflow: hidden;
+  background: none;
+  z-index: 1;
+  cursor: crosshair;
+  transition: 0.8s ease-out;
+}
 
- .myBtn:hover {
-   color: #101010;
-   cursor: crosshair;
- }
+.myBtn:hover {
+  color: #101010;
+  cursor: crosshair;
+}
 
- .myBtn::before {
-   content: "";
-   position: absolute;
-   background: #fff;
-   bottom: 0;
-   left: 0;
-   right: 0;
-   top: 100%;
-   z-index: -1;
-   transition: 0.8s ease-out;
- }
+.myBtn::before {
+  content: "";
+  position: absolute;
+  background: #fff;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 100%;
+  z-index: -1;
+  transition: 0.8s ease-out;
+}
 
- .myBtn:hover::before {
-   top: 0;
- }
+.myBtn:hover::before {
+  top: 0;
+}
