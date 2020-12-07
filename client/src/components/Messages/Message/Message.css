@@ -45,10 +45,12 @@
   color: gray;
   position: absolute;
   bottom: 3px;
+  opacity: 1.2;
   right: 10px;
 }
 .justifyEnd .timeStamp{
   color: lightgray;
+  opacity: .7;
 }
 .messageText img {
   vertical-align: middle;
@@ -87,7 +89,7 @@
 }
 
 .colorWhite {
-  color: black;
+  color: rgb(27, 133, 231);
 }
 
 .colorDark {
