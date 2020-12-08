@@ -1,14 +1,14 @@
-import React, { useState, useEffect, useRef } from "react";
-import "./Join.css";
-import io from "socket.io-client";
-import { TweenMax, Power2, Expo } from "gsap";
+import React, { useState, useEffect, useRef } from 'react';
+import './Join.css';
+import io from 'socket.io-client';
+import { TweenMax, Power2, Expo } from 'gsap';
 
 let socket;
 
 const Join = () => {
-  const [name, setName] = useState("");
-  const [room, setRoom] = useState("");
-  const [loginError, setLoginError] = useState("");
+  const [name, setName] = useState('');
+  const [room, setRoom] = useState('');
+  const [loginError, setLoginError] = useState('');
   const [submitting, setSubmitting] = useState(false);
 
   let h1Ref = useRef(null);
@@ -20,40 +20,45 @@ const Join = () => {
   let screen = useRef(null);
   let loginBtn = useRef(null);
 
-  const ENDPOINT = "https://buzz-and-go.herokuapp.com/";
-  //const ENDPOINT = "http://localhost:5000/"
+  // const ENDPOINT = "https://buzz-and-go.herokuapp.com/";
+  // //const ENDPOINT = "http://localhost:5000/"
+
+  const ENDPOINT =
+    process.env.NODE_ENV === 'development'
+      ? 'http://localhost:5000/'
+      : 'https://buzz-and-go.herokuapp.com/';
 
   useEffect(() => {
     socket = io(ENDPOINT);
   }, [ENDPOINT]);
 
   useEffect(() => {
-    setLoginError("");
+    setLoginError('');
     setSubmitting(false);
-    setName("");
-    setRoom("");
+    setName('');
+    setRoom('');
   }, []);
 
   const handleSubmit = (e) => {
     console.log(h1Ref.current);
 
-    socket.emit("check", { name, room }, (error) => {
+    socket.emit('check', { name, room }, (error) => {
       if (error) {
         setLoginError(error.error);
         setSubmitting(false);
       }
       if (!name || !room) {
-        setLoginError("Please fill all the fields");
+        setLoginError('Please fill all the fields');
         setSubmitting(false);
         return;
       }
 
       if (!error && name && room) {
-        setLoginError("");
+        setLoginError('');
         setSubmitting(true);
         TweenMax.to(loginBtn.current, {
-          y: "-150px",
-          backgroundColor: "#003459",
+          y: '-150px',
+          backgroundColor: '#003459',
         });
         TweenMax.to(nameRef.current, 1.5, {
           opacity: 0,
@@ -71,15 +76,15 @@ const Join = () => {
     });
   };
   const fadeOut = () => {
-    console.log("pressed");
+    console.log('pressed');
 
     TweenMax.to(mybtn, 2, {
-      y: "-100%",
+      y: '-100%',
       opacity: 0,
     });
 
     TweenMax.to(screen, 2, {
-      y: "-400%",
+      y: '-400%',
       opacity: 0,
       ease: Power2.easeInOut,
       delay: 1,
@@ -90,13 +95,13 @@ const Join = () => {
     });
     TweenMax.to(overlay, 2, {
       delay: 1,
-      top: "-110%",
+      top: '-110%',
       ease: Expo.easeInOut,
     });
 
     TweenMax.to(overlay2, 2, {
       delay: 1.5,
-      top: "-110%",
+      top: '-110%',
       ease: Expo.easeInOut,
     });
   };
@@ -173,12 +178,12 @@ const Join = () => {
         </div>
 
         <button
-          className={"button mt-20"}
+          className={'button mt-20'}
           type="submit"
           ref={loginBtn}
           onClick={() => handleSubmit()}
         >
-          {submitting ? "Welcome" : "Sign In"}
+          {submitting ? 'Welcome' : 'Sign In'}
         </button>
       </div>
     </div>
