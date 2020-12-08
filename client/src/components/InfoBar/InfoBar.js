@@ -3,23 +3,23 @@ import React, { Fragment } from 'react';
 import onlineIcon from '../../icons/onlineIcon.png';
 import closeIcon from '../../icons/closeIcon.png';
 
-import './InfoBar.css';
+import styles from './InfoBar.module.css';
 
 const InfoBar = ({ room, setIsToggle, isToggle }) => {
   return (
     <Fragment>
-      <div className="infoBar">
-        <div className="leftInnerContainer">
-          <div id="menu_button">
-            <input type="checkbox" id="menu_checkbox" onClick={() => setIsToggle(!isToggle)} />
-            <label htmlFor="menu_checkbox" id="menu_label">
-              <div id="menu_text_bar"></div>
+      <div className={styles.infoBar}>
+        <div className={styles.leftInnerContainer}>
+          <div id={styles.menu_button}>
+            <input type="checkbox" id={styles.menu_checkbox} onClick={() => setIsToggle(!isToggle)} />
+            <label htmlFor={styles.menu_checkbox} id={styles.menu_label}>
+              <div id={styles.menu_text_bar}></div>
             </label>
           </div>
-          <img className="onlineIcon" src={onlineIcon} alt="online icon" />
+          <img className={styles.onlineIcon} src={onlineIcon} alt="online icon" />
           <h3>{room}</h3>
         </div>
-        <div className="rightInnerContainer">
+        <div className={styles.rightInnerContainer}>
           <a href="/"><img src={closeIcon} alt="close icon" /></a>
         </div>
       </div>

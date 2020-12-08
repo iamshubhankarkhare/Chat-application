@@ -1,7 +1,7 @@
 import React from 'react';
 import 'emoji-mart/css/emoji-mart.css'
 import { emojiIndex } from 'emoji-mart'
-import './Input.css';
+import styles from './Input.module.css';
 import { Smile } from 'react-feather';
 import ReactTextareaAutocomplete from '@webscopeio/react-textarea-autocomplete';
 import { Picker } from 'emoji-mart'
@@ -36,15 +36,15 @@ const Input = ({ setMessage, sendMessage, message, handleEmoji, setIsEmoji, setM
             recent: 'Frequently Used',
           }
         }} />) : (null)}
-      <form className="form">
+      <form className={styles.form}>
         <button
           type="button"
-          className="toggle-emoji"
+          className={styles.toggle_emoji}
           onClick={handleEmoji}
         > <Smile /></button>
 
         <ReactTextareaAutocomplete
-          className="input"
+          className={styles.input}
           spellCheck="false"
           name="newMessage"
           value={message}
@@ -69,7 +69,7 @@ const Input = ({ setMessage, sendMessage, message, handleEmoji, setIsEmoji, setM
           }}
         />
 
-        <button className="sendButton" onClick={e => sendMessage(e)}>Send</button>
+        <button className={styles.sendButton} onClick={e => sendMessage(e)}>Send</button>
       </form>
     </div>
   )

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import './Join.css';
+import styles from './Join.module.css';
 import io from "socket.io-client";
 import { TweenMax, Power2, Expo } from 'gsap';
 
@@ -108,30 +108,30 @@ const Join = () => {
 
 
   return (
-    <div className="joinOuterContainer">
-      <div className="overlay" ref={element => { overlay = element }}>
-        <p className="screen" ref={element => { screen = element }}>Create a room <br /> or join one
+    <div className={styles.joinOuterContainer}>
+      <div className={styles.overlay} ref={element => { overlay = element }}>
+        <p className={styles.screen} ref={element => { screen = element }}>Create a room <br /> or join one
         <br />Chat <br />forget</p>
-        <div className="intro">
+        <div className={styles.intro}>
           <p>Your privacy is our concern.<br />The rooms are temporary.<br />Your chats are not being saved.<br />No authentication required.</p>
-          <button className="myBtn" onClick={() => fadeOut()} ref={element => { mybtn = element }}>Get started</button>
+          <button className={styles.myBtn} onClick={() => fadeOut()} ref={element => { mybtn = element }}>Get started</button>
         </div>
       </div>
-      <div className="overlay-2" ref={element => { overlay2 = element }}></div>
-      <div className="joinInnerContainer">
-        <h1 className="heading" ref={h1Ref}>Join</h1>
+      <div className={styles.overlay-2} ref={element => { overlay2 = element }}></div>
+      <div className={styles.joinInnerContainer}>
+        <h1 className={styles.heading} ref={h1Ref}>Join</h1>
         <div ref={nameRef}>
-          {(loginError) ? (<h3 className="errorh3">{`${loginError}`}</h3>) : (null)}
-          <input placeholder="Name" className="joinInput"
+          {(loginError) ? (<h3 className={styles.errorh3}>{`${loginError}`}</h3>) : (null)}
+          <input placeholder="Name" className={styles.joinInput}
             type="text" required={true}
             onChange={(event) => setName(event.target.value)} />
         </div>
         <div ref={roomRef}>
-          <input placeholder="Room" className="joinInput mt-20" type="text" onChange={(event) => setRoom(event.target.value)}
+          <input placeholder="Room" className={`${styles.joinInput} ${styles.mt_20}`} type="text" onChange={(event) => setRoom(event.target.value)}
             onKeyDown={(e) => (e.keyCode === 13) ? (handleSubmit()) : (null)} />
         </div>
 
-        <button className={'button mt-20'} type="submit"
+        <button className={`${styles.button} ${styles.mt_20}`} type="submit"
           ref={loginBtn}
           onClick={() => handleSubmit()}>
           {submitting ? "Welcome" : "Sign In"}</button>

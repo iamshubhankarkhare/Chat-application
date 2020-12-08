@@ -13,7 +13,7 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 
 
-import "./Chat.css";
+import styles from "./Chat.module.css";
 
 let socket;
 let timeout = undefined;
@@ -118,23 +118,23 @@ const Chat = ({ location }) => {
   }
 
   return (
-    <div className="outerContainer">
-      <div className="container">
+    <div className={styles.outerContainer}>
+      <div className={styles.container}>
         <InfoBar room={room} setIsToggle={setIsToggle} isToggle={isToggle} />
 
         {
           isToggle ? (users
             ? (<Fade right cascade >
-              <div className={`onlinePeople ${isToggle ? "" : ""}`} >
+              <div className={`${styles.onlinePeople} ${isToggle ? "" : ""}`} >
                 <h2>
                   {users.map(({ name }) => (
-                    <div key={name} className="activeItem">
+                    <div key={name} className={styles.activeItem}>
                       {name}
                       <img alt="Online Icon" src={onlineIcon} />
                     </div>
                   ))}
                 </h2>
-                <CopyToClipboard className="inviteBtn" text={`Hey! Let's chat on https://buzz-and-go.herokuapp.com/. Join my temporary room "${room}" and we're good to go.`}>
+                <CopyToClipboard className={styles.inviteBtn} text={`Hey! Let's chat on https://buzz-and-go.herokuapp.com/. Join my temporary room "${room}" and we're good to go.`}>
                   <button onClick={() => handleCopy('invite')}>{isCopied === 'invite' ? "Copied!" : "Invite link"}</button>
                 </CopyToClipboard>
 
@@ -153,7 +153,7 @@ const Chat = ({ location }) => {
           title='Pick your emoji…' emoji='point_up'
           style={{ position: 'relative' }}
           i18n={{ search: 'Recherche', categories: { search: 'Résultats de recherche', recent: 'Récents' } }} />) : (null)} */}
-        {(name === typingUser ? (null) : (isTyping ? (<h5 className="typingMsg">{typingUser} is typing..</h5>) : (null)))}
+        {(name === typingUser ? (null) : (isTyping ? (<h5 className={styles.typingMsg}>{typingUser} is typing..</h5>) : (null)))}
         <Input
           message={message}
           setMessage={setMessage}
