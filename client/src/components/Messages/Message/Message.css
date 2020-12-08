@@ -1,12 +1,37 @@
 .messageBox {
-  border-radius: 20px;
-  padding: 5px 20px;
+  /* border-radius: 20px; */
+  padding: 0.5rem 1rem;
   color: white;
   display: inline-block;
   max-width: 70%;
   margin: 10px;
+  position: relative;
 }
 
+.justifyStart .messageBox::after {
+  content: "";
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  background: white;
+  position: absolute;
+  bottom: -1rem;
+  right: -13px;
+  top: calc(50% - 0.5rem);
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+}
+.justifyEnd .messageBox::after {
+  content: "";
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  background: rgba(25, 147, 147, 0.2);
+  position: absolute;
+  bottom: -1rem;
+  left: -16px;
+  top: calc(50% - 0.5rem);
+  clip-path: polygon(0 50%, 100% 0%, 100% 100%);
+}
 .messageText {
   width: 100%;
   letter-spacing: 0;
@@ -15,6 +40,18 @@
   word-wrap: break-word;
 }
 
+.timeStamp {
+  font-size: 0.7rem;
+  color: gray;
+  position: absolute;
+  bottom: 3px;
+  opacity: 1.2;
+  right: 10px;
+}
+.justifyEnd .timeStamp {
+  color: lightgray;
+  opacity: 0.7;
+}
 .messageText img {
   vertical-align: middle;
 }
@@ -52,7 +89,7 @@
 }
 
 .colorWhite {
-  color: #0AD5C1;
+  color: #0ad5c1;
 }
 
 .colorDark {
@@ -60,7 +97,7 @@
 }
 
 .backgroundBlue {
-  background: rgba(25, 147, 147, 0.2);
+  background-color: rgba(25, 147, 147, 0.2);
 }
 
 .backgroundLight {

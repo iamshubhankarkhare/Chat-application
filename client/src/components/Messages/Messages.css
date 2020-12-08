@@ -1,21 +1,21 @@
 .messages {
-  padding: 5% 0;
-  overflow: auto;
-  overflow-x: hidden !important;
-  flex: auto;
+    padding: 1% 0;
+    overflow: auto;
+    overflow-x: hidden !important;
+    flex: auto;
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
-  background-color: rgba(25, 147, 147, 0.1);
+    width: 10px;
+    background-color: rgba(25, 147, 147, 0.1);
 }
 
 ::-webkit-scrollbar-track {
-  border-radius: 10px;
-  background-color: rgba(25, 147, 147, 0.1);
+    border-radius: 10px;
+    background-color: rgba(25, 147, 147, 0.1);
 }
 
 ::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  background-color: rgba(25, 147, 147, 0.2);
+    border-radius: 10px;
+    background-color: rgba(25, 147, 147, 0.2);
 }
