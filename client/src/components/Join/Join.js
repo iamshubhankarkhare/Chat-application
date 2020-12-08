@@ -20,10 +20,14 @@ const Join = () => {
   let screen = useRef(null);
   let loginBtn = useRef(null);
 
+  // const ENDPOINT = "https://buzz-and-go.herokuapp.com/";
+  // //const ENDPOINT = "http://localhost:5000/"
+
   const ENDPOINT =
     process.env.NODE_ENV === 'development'
       ? 'http://localhost:5000/'
       : 'https://buzz-and-go.herokuapp.com/';
+
   useEffect(() => {
     socket = io(ENDPOINT);
   }, [ENDPOINT]);
@@ -110,17 +114,18 @@ const Join = () => {
           overlay = element;
         }}
       >
-        <p
-          className="screen"
-          ref={(element) => {
-            screen = element;
-          }}
-        >
-          Create a room <br /> or join one
-          <br />
-          Chat <br />
-          forget
-        </p>
+        <div className="screen">
+          <p
+            ref={(element) => {
+              screen = element;
+            }}
+          >
+            Create a room <br /> or join one
+            <br />
+            Chat <br />
+            forget
+          </p>
+        </div>
         <div className="intro">
           <p>
             Your privacy is our concern.
