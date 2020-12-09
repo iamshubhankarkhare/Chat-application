@@ -22,11 +22,12 @@ Buzz-and-go :sparkles:
 This project includes a light weight frontend UI - bootstrapped with  [create-react-app](https://reactjs.org/docs/create-a-new-react-app.html). The FE client is located in  `./client`  folder.  
 #### About Backend
 The backend runs on express/nodejs. In production mode, express server exposes the API endpoints and serve the static frontend from  `./client/build`.
-## How to get started
+
+## How to get started :book:
 
  -  Fork the repo.
  - Clone the Github repository 
- `git clone <github url of the forked repo>`
+ `git clone https://github.com/iamshubhankarkhare/Chat-application.git`
  - Move to the project folder 
  `cd Chat-application`
  
@@ -36,8 +37,13 @@ The backend runs on express/nodejs. In production mode, express server exposes t
  - Move to the base folder again `cd ..`
  - Run both the client and server `npm run dev`
  
-## Contributing
-Thank you so much for your interest in contributing!. All types of contributions are encouraged and valued.
+## Direct links for contributing :link:
+Thank you so much for your interest in contributing!.
+All types of contributions are encouraged and valued.
+
+* [Issues](https://github.com/iamshubhankarkhare/Chat-application/issues)
+* [Create new PR](https://github.com/iamshubhankarkhare/Chat-application/pulls)
+
 ### Contributing workflow
 - You can work on existing [issues](https://github.com/iamshubhankarkhare/Chat-application/issues) or create new issues and work on them.
  - After completing the steps mentioned in the *How to get started* section you have the project up and running. You are right now in *master branch*. You can check your current branch with `git branch` 
@@ -68,5 +74,5 @@ If the project doesn't do something you need or want it to do:
 -   Provide as much context as you can about what you're running into.
 -   Please try and be clear about why existing features and alternatives would not work for you.
 
-## Join our Slack community!
-For all development related queries join our [communication channel on Slack](https://join.slack.com/t/buzz-and-godevelopers/shared_invite/zt-jkjlcyxe-LH0EyNhz6~s~O8fweNiT1Q) 
+## Communication Channel :computer:
+For all development related queries, [Join Slack](https://join.slack.com/t/buzz-and-godevelopers/shared_invite/zt-jkjlcyxe-LH0EyNhz6~s~O8fweNiT1Q) 
