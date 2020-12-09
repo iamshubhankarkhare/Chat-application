@@ -1,9 +1,26 @@
-# Buzz-and-go
+<p align="center">
+    <img src="client/src/components/Images/4.PNG" width="240" height="240" />
+</p>
 
-**Buzz-and-go** is a **real time Web based chat application**. One can create a **temporary chatroom**, invite others in it and chat without restrictions. The room is deleted when all the members are offline. It doesn't require authentication so gives a hassle-free chat experience i.e  the end users  **don't identify**  themselves. To respect privacy data is  **not**  stored on any remote server.
+Buzz-and-go :sparkles:
+============
 
-### For developers
+[**Buzz-and-go**](https://buzz-and-go.herokuapp.com/) is a **real time Web based chat application**. One can create a **temporary chatroom**, invite others in it and chat without restrictions. The room is deleted when all the members are offline. It doesn't require authentication so gives a hassle-free,easy to use, user-friendly chat experience i.e  the end users  **don't identify**  themselves. To respect privacy data is  **not**  stored on any remote server.
+
+<p align="center">
+    <img src="client/src/components/Images/1.PNG" />
+</p>
+
+## Easy to create room and chat!
+<p align="center">
+    <img src="client/src/components/Images/2.PNG"/>
+</p>
+
+
+### Info for developers :clipboard:
+#### About frontend
 This project includes a light weight frontend UI - bootstrapped with  [create-react-app](https://reactjs.org/docs/create-a-new-react-app.html). The FE client is located in  `./client`  folder.  
+#### About Backend
 The backend runs on express/nodejs. In production mode, express server exposes the API endpoints and serve the static frontend from  `./client/build`.
 ## How to get started
 
