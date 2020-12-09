@@ -76,3 +76,6 @@ If the project doesn't do something you need or want it to do:
 
 ## Communication Channel :computer:
 For all development related queries, [Join Slack](https://join.slack.com/t/buzz-and-godevelopers/shared_invite/zt-jkjlcyxe-LH0EyNhz6~s~O8fweNiT1Q) 
+
+
+# :large_blue_diamond: Keep Contributing! :large_blue_diamond:
