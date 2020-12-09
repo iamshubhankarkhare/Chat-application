@@ -40,8 +40,6 @@ const Join = () => {
   }, []);
 
   const handleSubmit = (e) => {
-    console.log(h1Ref.current);
-
     socket.emit('check', { name, room }, (error) => {
       if (error) {
         setLoginError(error.error);
@@ -76,8 +74,6 @@ const Join = () => {
     });
   };
   const fadeOut = () => {
-    console.log('pressed');
-
     TweenMax.to(mybtn, 2, {
       y: '-100%',
       opacity: 0,
