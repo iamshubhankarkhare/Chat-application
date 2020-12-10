@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import ReactDOM from 'react';
 import './Join.css';
 import io from 'socket.io-client';
 import { TweenMax, Power2, Expo } from 'gsap';
@@ -12,6 +13,7 @@ const Join = () => {
   const [submitting, setSubmitting] = useState(false);
 
   let h1Ref = useRef(null);
+  let roomsref = useRef(null);
   let nameRef = useRef(null);
   let roomRef = useRef(null);
   let mybtn = useRef(null);
@@ -67,6 +69,9 @@ const Join = () => {
         TweenMax.to(h1Ref.current, 1.5, {
           opacity: 0,
         });
+        TweenMax.to(roomsref.current, 1.5,{
+          opacity: 0,          
+        });
         setTimeout(() => {
           window.location.replace(`/chat?name=${name}&room=${room}`);
         }, 2000);
@@ -101,6 +106,24 @@ const Join = () => {
       ease: Expo.easeInOut,
     });
   };
+
+  const newItem = (content) => {
+    const item = document.createElement('li');
+    item.innerText = content;
+    return item;
+  };
+
+ useEffect(() => {
+    const container = document.getElementById('RoomList');
+    socket.on('getrooms', (rooms) => {
+      for (var i = 0; i < rooms.length; i ++) {
+        let s = "Room " + (rooms[i].room);
+        s += (" with participants ");
+        s += (String(rooms[i].part));
+        container.appendChild(newItem(s));
+      }
+    });
+  },[]);
 
   return (
     <div className="joinOuterContainer">
@@ -151,8 +174,11 @@ const Join = () => {
       ></div>
       <div className="joinInnerContainer">
         <h1 className="heading" ref={h1Ref}>
-          Join
+          Create or Join a Present Room
         </h1>
+        <ul id="RoomList" ref={roomsref}>
+          <h2>Present Rooms</h2>
+        </ul>
         <div ref={nameRef}>
           {loginError ? <h3 className="errorh3">{`${loginError}`}</h3> : null}
           <input
