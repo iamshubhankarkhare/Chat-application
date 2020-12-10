@@ -3,13 +3,13 @@ const express = require("express");
 const socketio = require("socket.io");
 const cors = require("cors");
 const path = require("path");
-
 const {
   addUser,
   removeUser,
   getUser,
   getUsersInRoom,
   checkUser,
+  rooms
 } = require("./users");
 
 const PORT = process.env.PORT || 5000;
@@ -31,10 +31,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 io.on("connection", (socket) => {
-  console.log("new mf in town");
-
   socket.on("join", ({ name, room }, callback) => {
-    console.log(name, room);
     const { error, user } = addUser({ id: socket.id, name, room });
     if (error) {
       return callback(error);
@@ -83,7 +80,7 @@ io.on("connection", (socket) => {
     const error = checkUser({ name, room });
     return callback(error);
   });
-
+  socket.emit('getrooms',rooms);
   socket.on("disconnect", () => {
     const user = removeUser(socket.id);
 
