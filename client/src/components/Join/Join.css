@@ -27,7 +27,8 @@ body {
   width: 25%;
 }
 .joinInnerContainer h1 {
-  color: rgba(255, 115, 0, 0.842);
+  color: #003459;
+  font-size: 3rem;
 }
 
 .joinInput {
@@ -103,7 +104,7 @@ body {
     width: 50%;
   }
 }
-@media (min-width: 320px) and (max-width: 480px) {
+@media (max-width: 480px) {
   .joinOuterContainer {
     height: 100%;
   }
@@ -206,15 +207,22 @@ button:focus {
 }
 #RoomList h2 {
   margin-top: 4px;
-  font-weight: 500;
+  font-weight: 300;
+  letter-spacing: 1.5px;
 }
 
 #RoomList li {
-  transform: scale(1, 1);
+  transform: scale(1);
   margin-bottom: 1rem;
-  transition: transform 600ms;
+  transition: 400ms ease-in-out;
   font-size: 1.2rem;
+  letter-spacing: 1.5px;
+  font-weight: 300;
 }
 #RoomList li:hover {
-  transform: scale(1.04, 1.04);
+  transform: scale(1.04);
+}
+
+.fa {
+  padding-left: 1rem;
 }

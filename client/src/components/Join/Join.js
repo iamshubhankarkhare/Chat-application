@@ -119,11 +119,8 @@ const Join = () => {
     socket.on('getrooms', (rooms) => {
       for (var i = 0; i < rooms.length; i++) {
         let s =
-          'Room:- ' +
-          '" ' +
           rooms[i].room +
-          ' "' +
-          ' <br/> <i class = "fa fa-users"/>  x' +
+          '  <i class = "fa fa-users"/>  x' +
           String(rooms[i].part);
 
         container.appendChild(newItem(s));
