@@ -1,6 +1,6 @@
 html,
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   padding: 0;
   margin: 0;
   overflow: hidden;
@@ -26,8 +26,9 @@ body {
 .joinInnerContainer {
   width: 25%;
 }
-.joinInnerContainer h1{
-  color:rgba(255, 115, 0, 0.842);
+.joinInnerContainer h1 {
+  color: #003459;
+  font-size: 3rem;
 }
 
 .joinInput {
@@ -103,7 +104,7 @@ body {
     width: 50%;
   }
 }
-@media (min-width: 320px) and (max-width: 480px) {
+@media (max-width: 480px) {
   .joinOuterContainer {
     height: 100%;
   }
@@ -183,7 +184,7 @@ button:focus {
 }
 
 .myBtn::before {
-  content: "";
+  content: '';
   position: absolute;
   background: #fff;
   bottom: 0;
@@ -198,31 +199,30 @@ button:focus {
   top: 0;
 }
 
-#RoomList{
-  list-style-type: none;
-  border: 1px red dotted;
-  color: yellowgreen;
-  padding: 0;
+#RoomList {
+  border: 1px #007ea7 dotted;
+  color: #003459;
+  padding: 0.5rem 1.8rem;
+  text-align: left;
 }
-#RoomList h2{
-  margin-top: 8px;
-  font-weight: 500;
-}
-
-#RoomList li{
-  transform: scale(1,1);
-  margin-bottom: 4px;
-  transition: transform 1s;
-}
-#RoomList li:hover{
-  transform: scale(1.2,1.2);
+#RoomList h2 {
+  margin-top: 4px;
+  font-weight: 300;
+  letter-spacing: 1.5px;
 }
 
-#RoomList li:nth-child(odd){
-  color: rgba(38, 0, 255, 0.664);
-  font-size: 18px;
+#RoomList li {
+  transform: scale(1);
+  margin-bottom: 1rem;
+  transition: 400ms ease-in-out;
+  font-size: 1.2rem;
+  letter-spacing: 1.5px;
+  font-weight: 300;
 }
-#RoomList li:nth-child(even){
-  color: rgba(255, 166, 0, 0.938);
-  font-size: 18px;
+#RoomList li:hover {
+  transform: scale(1.04);
+}
+
+.fa {
+  padding-left: 1rem;
 }
