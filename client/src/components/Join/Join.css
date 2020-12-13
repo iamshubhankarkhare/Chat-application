@@ -24,7 +24,10 @@ body {
 }
 
 .joinInnerContainer {
-  width: 20%;
+  width: 25%;
+}
+.joinInnerContainer h1{
+  color:rgba(255, 115, 0, 0.842);
 }
 
 .joinInput {
@@ -36,7 +39,7 @@ body {
 
 .heading {
   color: #003459;
-  font-size: 2.5em;
+  font-size: 2em;
   padding-bottom: 8px;
   border-bottom: 2px solid #003459;
   font-family: Poppins;
@@ -84,6 +87,22 @@ body {
   margin-top: 20px;
 }
 
+@media (min-width: 800px) and (max-width: 1080px) {
+  .joinOuterContainer {
+    height: 100%;
+  }
+  .joinInnerContainer {
+    width: 35%;
+  }
+}
+@media (min-width: 480px) and (max-width: 800px) {
+  .joinOuterContainer {
+    height: 100%;
+  }
+  .joinInnerContainer {
+    width: 50%;
+  }
+}
 @media (min-width: 320px) and (max-width: 480px) {
   .joinOuterContainer {
     height: 100%;
@@ -102,7 +121,7 @@ button:focus {
 }
 
 .overlay-2 {
-  z-index: 0;
+  z-index: 5;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -110,7 +129,7 @@ button:focus {
 }
 
 .overlay {
-  z-index: 1;
+  z-index: 10;
   position: absolute;
   width: 100%;
   height: 100vh;
@@ -177,4 +196,33 @@ button:focus {
 
 .myBtn:hover::before {
   top: 0;
+}
+
+#RoomList{
+  list-style-type: none;
+  border: 1px red dotted;
+  color: yellowgreen;
+  padding: 0;
+}
+#RoomList h2{
+  margin-top: 8px;
+  font-weight: 500;
+}
+
+#RoomList li{
+  transform: scale(1,1);
+  margin-bottom: 4px;
+  transition: transform 1s;
+}
+#RoomList li:hover{
+  transform: scale(1.2,1.2);
+}
+
+#RoomList li:nth-child(odd){
+  color: rgba(38, 0, 255, 0.664);
+  font-size: 18px;
+}
+#RoomList li:nth-child(even){
+  color: rgba(255, 166, 0, 0.938);
+  font-size: 18px;
 }
