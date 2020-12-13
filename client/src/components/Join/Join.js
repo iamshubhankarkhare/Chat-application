@@ -3,6 +3,7 @@ import ReactDOM from 'react';
 import './Join.css';
 import io from 'socket.io-client';
 import { TweenMax, Power2, Expo } from 'gsap';
+import { FontAwesome } from '@fortawesome/react-fontawesome';
 
 let socket;
 
@@ -69,8 +70,8 @@ const Join = () => {
         TweenMax.to(h1Ref.current, 1.5, {
           opacity: 0,
         });
-        TweenMax.to(roomsref.current, 1.5,{
-          opacity: 0,          
+        TweenMax.to(roomsref.current, 1.5, {
+          opacity: 0,
         });
         setTimeout(() => {
           window.location.replace(`/chat?name=${name}&room=${room}`);
@@ -109,21 +110,26 @@ const Join = () => {
 
   const newItem = (content) => {
     const item = document.createElement('li');
-    item.innerText = content;
+    item.innerHTML = content;
     return item;
   };
 
- useEffect(() => {
+  useEffect(() => {
     const container = document.getElementById('RoomList');
     socket.on('getrooms', (rooms) => {
-      for (var i = 0; i < rooms.length; i ++) {
-        let s = "Room " + (rooms[i].room);
-        s += (" with participants ");
-        s += (String(rooms[i].part));
+      for (var i = 0; i < rooms.length; i++) {
+        let s =
+          'Room:- ' +
+          '" ' +
+          rooms[i].room +
+          ' "' +
+          ' <br/> <i class = "fa fa-users"/>  x' +
+          String(rooms[i].part);
+
         container.appendChild(newItem(s));
       }
     });
-  },[]);
+  }, []);
 
   return (
     <div className="joinOuterContainer">
