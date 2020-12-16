@@ -69,8 +69,8 @@ const Join = () => {
         TweenMax.to(h1Ref.current, 1.5, {
           opacity: 0,
         });
-        TweenMax.to(roomsref.current, 1.5,{
-          opacity: 0,          
+        TweenMax.to(roomsref.current, 1.5, {
+          opacity: 0,
         });
         setTimeout(() => {
           window.location.replace(`/chat?name=${name}&room=${room}`);
@@ -107,33 +107,36 @@ const Join = () => {
     });
   };
 
-  const newItem = (content) => {
+  const newItem = (content, room) => {
     const item = document.createElement('li');
     item.innerText = content;
+    item.onclick = () => {
+      setRoom(room);
+    };
     return item;
   };
 
- useEffect(() => {
+  useEffect(() => {
     const container = document.getElementById('RoomList');
     socket.on('getrooms', (rooms) => {
-      for (var i = 0; i < rooms.length; i ++) {
-        let s = "Room " + (rooms[i].room);
-        s += (" with participants ");
-        s += (String(rooms[i].part));
-        container.appendChild(newItem(s));
+      for (var i = 0; i < rooms.length; i++) {
+        let s = 'Room ' + rooms[i].room;
+        s += ' with participants ';
+        s += String(rooms[i].part);
+        container.appendChild(newItem(s, rooms[i].room));
       }
     });
-  },[]);
+  }, []);
 
   return (
-    <div className="joinOuterContainer">
+    <div className='joinOuterContainer'>
       <div
-        className="overlay"
+        className='overlay'
         ref={(element) => {
           overlay = element;
         }}
       >
-        <div className="screen">
+        <div className='screen'>
           <p
             ref={(element) => {
               screen = element;
@@ -145,7 +148,7 @@ const Join = () => {
             forget
           </p>
         </div>
-        <div className="intro">
+        <div className='intro'>
           <p>
             Your privacy is our concern.
             <br />
@@ -156,7 +159,7 @@ const Join = () => {
             No authentication required.
           </p>
           <button
-            className="myBtn"
+            className='myBtn'
             onClick={() => fadeOut()}
             ref={(element) => {
               mybtn = element;
@@ -167,33 +170,34 @@ const Join = () => {
         </div>
       </div>
       <div
-        className="overlay-2"
+        className='overlay-2'
         ref={(element) => {
           overlay2 = element;
         }}
       ></div>
-      <div className="joinInnerContainer">
-        <h1 className="heading" ref={h1Ref}>
+      <div className='joinInnerContainer'>
+        <h1 className='heading' ref={h1Ref}>
           Create or Join a Present Room
         </h1>
-        <ul id="RoomList" ref={roomsref}>
+        <ul id='RoomList' ref={roomsref}>
           <h2>Present Rooms</h2>
         </ul>
         <div ref={nameRef}>
-          {loginError ? <h3 className="errorh3">{`${loginError}`}</h3> : null}
+          {loginError ? <h3 className='errorh3'>{`${loginError}`}</h3> : null}
           <input
-            placeholder="Name"
-            className="joinInput"
-            type="text"
+            placeholder='Name'
+            className='joinInput'
+            type='text'
             required={true}
             onChange={(event) => setName(event.target.value)}
           />
         </div>
         <div ref={roomRef}>
           <input
-            placeholder="Room"
-            className="joinInput mt-20"
-            type="text"
+            placeholder='Room'
+            className='joinInput mt-20'
+            type='text'
+            value={room}
             onChange={(event) => setRoom(event.target.value)}
             onKeyDown={(e) => (e.keyCode === 13 ? handleSubmit() : null)}
           />
@@ -201,7 +205,7 @@ const Join = () => {
 
         <button
           className={'button mt-20'}
-          type="submit"
+          type='submit'
           ref={loginBtn}
           onClick={() => handleSubmit()}
         >
