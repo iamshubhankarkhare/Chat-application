@@ -6,8 +6,14 @@ const addUser = ({ id, name, room }) => {
     room = room.trim().toLowerCase();
     const index = rooms.findIndex((target) => target.room === room);
     if(index === -1){
+        // participants in the room
         part = 1;
-        rooms.push({room, part});
+        // status of the room
+        // 0 -> public
+        // 1 -> private
+        // 2 -> locked
+        status = 0;
+        rooms.push({room, part, status});
     }else{
         rooms[index].part = rooms[index].part + 1;
     }
