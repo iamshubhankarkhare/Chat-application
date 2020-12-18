@@ -11,6 +11,7 @@ const Join = () => {
   const [room, setRoom] = useState('');
   const [loginError, setLoginError] = useState('');
   const [submitting, setSubmitting] = useState(false);
+  const [rooms, setRooms] = useState([]);
 
   let h1Ref = useRef(null);
   let roomsref = useRef(null);
@@ -106,25 +107,9 @@ const Join = () => {
       ease: Expo.easeInOut,
     });
   };
-
-  const newItem = (content, room) => {
-    const item = document.createElement('li');
-    item.innerText = content;
-    item.onclick = () => {
-      setRoom(room);
-    };
-    return item;
-  };
-
   useEffect(() => {
-    const container = document.getElementById('RoomList');
     socket.on('getrooms', (rooms) => {
-      for (var i = 0; i < rooms.length; i++) {
-        let s = 'Room ' + rooms[i].room;
-        s += ' with participants ';
-        s += String(rooms[i].part);
-        container.appendChild(newItem(s, rooms[i].room));
-      }
+      setRooms(rooms);
     });
   }, []);
 
@@ -181,6 +166,11 @@ const Join = () => {
         </h1>
         <ul id='RoomList' ref={roomsref}>
           <h2>Present Rooms</h2>
+          {rooms.map((room) => (
+            <li onClick={() => setRoom(room.room)} key={room.room}>
+              Room {room.room} with Participants {room.part}
+            </li>
+          ))}
         </ul>
         <div ref={nameRef}>
           {loginError ? <h3 className='errorh3'>{`${loginError}`}</h3> : null}
