@@ -146,19 +146,19 @@ const Chat = ({ location }) => {
                 </CopyToClipboard>
                 <button
                   onClick={() => setRoomType('public')}
-                  className='inviteBtn'
+                  className={roomType === 'public' ? 'copiedBtn' : 'inviteBtn'}
                 >
                   Public
                 </button>
                 <button
                   onClick={() => setRoomType('private')}
-                  className='inviteBtn'
+                  className={roomType === 'private' ? 'copiedBtn' : 'inviteBtn'}
                 >
                   Private
                 </button>
                 <button
                   onClick={() => setRoomType('locked')}
-                  className='inviteBtn'
+                  className={roomType === 'locked' ? 'copiedBtn' : 'inviteBtn'}
                 >
                   Locked
                 </button>
