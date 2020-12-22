@@ -41,6 +41,10 @@ const Chat = ({ location }) => {
     setName(name);
     setRoom(room);
 
+    socket.emit('get_status', room, (status) =>{
+      setRoomType(status);
+    });
+
     socket.emit('join', { name, room }, (error) => {
       console.log(error);
     });
@@ -115,6 +119,12 @@ const Chat = ({ location }) => {
     }, 3000);
   };
 
+  // for sending the status of room
+  const handleStatus = (status) => {
+    setRoomType(status);
+    socket.emit('set_status', {room, status});
+  };
+
   return (
     <div className='outerContainer'>
       <div className='container'>
@@ -145,19 +155,19 @@ const Chat = ({ location }) => {
                   </button>
                 </CopyToClipboard>
                 <button
-                  onClick={() => setRoomType('public')}
+                  onClick={() => handleStatus('public')}
                   className={roomType === 'public' ? 'copiedBtn' : 'inviteBtn'}
                 >
                   Public
                 </button>
                 <button
-                  onClick={() => setRoomType('private')}
+                  onClick={() => handleStatus('private')}
                   className={roomType === 'private' ? 'copiedBtn' : 'inviteBtn'}
                 >
                   Private
                 </button>
                 <button
-                  onClick={() => setRoomType('locked')}
+                  onClick={() => handleStatus('locked')}
                   className={roomType === 'locked' ? 'copiedBtn' : 'inviteBtn'}
                 >
                   Locked

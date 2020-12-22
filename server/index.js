@@ -80,7 +80,22 @@ io.on("connection", (socket) => {
     const error = checkUser({ name, room });
     return callback(error);
   });
+
   socket.emit('getrooms',rooms);
+
+  socket.on('set_status', ({room, status}) =>{
+    let index = rooms.findIndex((target) => target.room === room);
+    if(index != -1)
+      rooms[index].status = status;
+  });
+
+  socket.on('get_status', (room, callback) =>{
+    let index = rooms.findIndex((target) => target.room === room);
+    if(index != -1)
+      return callback(rooms[index].status);
+    return 'public';
+  });
+
   socket.on("disconnect", () => {
     const user = removeUser(socket.id);
 

@@ -4,23 +4,25 @@ const rooms = [];
 const addUser = ({ id, name, room }) => {
     name = name.trim().toLowerCase();
     room = room.trim().toLowerCase();
-    const index = rooms.findIndex((target) => target.room === room);
+    let index = rooms.findIndex((target) => target.room === room);
     if(index === -1){
         // participants in the room
         part = 1;
         // status of the room
-        // 0 -> public
-        // 1 -> private
-        // 2 -> locked
-        status = 0;
+        // public, private, locked
+        status = "public";
         rooms.push({room, part, status});
     }else{
         rooms[index].part = rooms[index].part + 1;
     }
     const existingUser = users.find((user) => user.room === room && user.name === name);
-
+    index = (index === -1)?rooms.length - 1:index;
+    
     if (existingUser) {
         return { error: "Sorry! This username is already taken" }
+    }
+    if (rooms[index].status === "locked"){
+        return {error: "Sorry! The room is locked, you cannot join"}
     }
 
     const user = { id, name, room };

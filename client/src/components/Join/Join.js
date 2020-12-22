@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import ReactDOM from 'react';
 import './Join.css';
 import io from 'socket.io-client';
 import { TweenMax, Power2, Expo } from 'gsap';
@@ -167,9 +166,9 @@ const Join = () => {
         <ul id='RoomList' ref={roomsref}>
           <h2>Present Rooms</h2>
           {rooms.map((room) => (
-            <li onClick={() => setRoom(room.room)} key={room.room}>
+            (room.status === 'public')?<li onClick={() => setRoom(room.room)} key={room.room}>
               Room {room.room} with Participants {room.part}
-            </li>
+            </li>:null
           ))}
         </ul>
         <div ref={nameRef}>
