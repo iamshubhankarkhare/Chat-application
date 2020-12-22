@@ -26,6 +26,7 @@ const Chat = ({ location }) => {
   const [typingUser, setTypingUser] = useState('');
   const [isToggle, setIsToggle] = useState(false);
   const [isCopied, setIsCopied] = useState('');
+  const [roomType, setRoomType] = useState('public');
 
   const ENDPOINT =
     process.env.NODE_ENV === 'development'
@@ -115,8 +116,8 @@ const Chat = ({ location }) => {
   };
 
   return (
-    <div className="outerContainer">
-      <div className="container">
+    <div className='outerContainer'>
+      <div className='container'>
         <InfoBar room={room} setIsToggle={setIsToggle} isToggle={isToggle} />
 
         {isToggle ? (
@@ -125,9 +126,9 @@ const Chat = ({ location }) => {
               <div className={`onlinePeople ${isToggle ? '' : ''}`}>
                 <h2>
                   {users.map(({ name }) => (
-                    <div key={name} className="activeItem">
+                    <div key={name} className='activeItem'>
                       {name}
-                      <img alt="Online Icon" src={onlineIcon} />
+                      <img alt='Online Icon' src={onlineIcon} />
                     </div>
                   ))}
                 </h2>
@@ -143,6 +144,24 @@ const Chat = ({ location }) => {
                     {isCopied === 'invite' ? 'Copied!' : 'Invite link'}
                   </button>
                 </CopyToClipboard>
+                <button
+                  onClick={() => setRoomType('public')}
+                  className={roomType === 'public' ? 'copiedBtn' : 'inviteBtn'}
+                >
+                  Public
+                </button>
+                <button
+                  onClick={() => setRoomType('private')}
+                  className={roomType === 'private' ? 'copiedBtn' : 'inviteBtn'}
+                >
+                  Private
+                </button>
+                <button
+                  onClick={() => setRoomType('locked')}
+                  className={roomType === 'locked' ? 'copiedBtn' : 'inviteBtn'}
+                >
+                  Locked
+                </button>
               </div>
             </Fade>
           ) : null
@@ -156,7 +175,7 @@ const Chat = ({ location }) => {
           style={{ position: 'relative' }}
           i18n={{ search: 'Recherche', categories: { search: 'Résultats de recherche', recent: 'Récents' } }} />) : (null)} */}
         {name === typingUser ? null : isTyping ? (
-          <h5 className="typingMsg">{typingUser} is typing..</h5>
+          <h5 className='typingMsg'>{typingUser} is typing..</h5>
         ) : null}
         <Input
           message={message}
