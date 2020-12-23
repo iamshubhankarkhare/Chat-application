@@ -1,5 +1,4 @@
-const random = require('random');
-export function generatePrivateCode() {
+const generatePrivateCode = () => {
   var result = '';
   var characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
   var charactersLength = characters.length;
@@ -8,3 +7,5 @@ export function generatePrivateCode() {
   }
   return result;
 }
+
+module.exports = {generatePrivateCode}
