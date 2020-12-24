@@ -27,6 +27,7 @@ const Chat = ({ location }) => {
   const [isToggle, setIsToggle] = useState(false);
   const [isCopied, setIsCopied] = useState('');
   const [roomType, setRoomType] = useState('public');
+  const [code, setCode] = useState('');
 
   const ENDPOINT =
     process.env.NODE_ENV === 'development'
@@ -41,12 +42,16 @@ const Chat = ({ location }) => {
     setName(name);
     setRoom(room);
 
-    socket.emit('get_status', room, (status) =>{
-      setRoomType(status);
-    });
-
     socket.emit('join', { name, room }, (error) => {
       console.log(error);
+    });
+
+    socket.emit('get_room_inf', room, (room_inf) =>{
+      setRoomType(room_inf.status);
+      if(room_inf.status === 'private')
+        setCode("Private code of our room is " + room_inf.privateCode + ".");
+      else
+        setCode('');
     });
   }, [ENDPOINT, location.search]);
 
@@ -123,6 +128,13 @@ const Chat = ({ location }) => {
   const handleStatus = (status) => {
     setRoomType(status);
     socket.emit('set_status', {room, status});
+    socket.emit('get_room_inf', room, (room_inf) =>{
+      setRoomType(room_inf.status);
+      if(room_inf.status === 'private')
+        setCode("Private code of our room is " + room_inf.privateCode + ".");
+      else
+        setCode('');
+    });
   };
 
   return (
@@ -143,7 +155,9 @@ const Chat = ({ location }) => {
                   ))}
                 </h2>
                 <CopyToClipboard
-                  text={`Hey! Let's chat on https://buzz-and-go.herokuapp.com/. Join my temporary room "${room}" and we're good to go.`}
+                  text={`Hey! Let's chat on https://buzz-and-go.herokuapp.com/. 
+                        Join my temporary room "${room}" and we're good to go.
+                        ${code}`}
                 >
                   <button
                     className={
@@ -164,7 +178,7 @@ const Chat = ({ location }) => {
                   onClick={() => handleStatus('private')}
                   className={roomType === 'private' ? 'copiedBtn' : 'inviteBtn'}
                 >
-                  Private
+                  {roomType === 'private'?`${code}`:'Private'}
                 </button>
                 <button
                   onClick={() => handleStatus('locked')}

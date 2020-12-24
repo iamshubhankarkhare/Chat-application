@@ -164,7 +164,7 @@ const Join = () => {
           Create or Join a Present Room
         </h1>
         <ul id='RoomList' ref={roomsref}>
-          <h2>Present Rooms</h2>
+          <h2>Public Rooms</h2>
           {rooms.map((room) => (
             (room.status === 'public')?<li onClick={() => setRoom(room.room)} key={room.room}>
               Room {room.room} with Participants {room.part}

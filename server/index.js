@@ -92,15 +92,14 @@ io.on('connection', (socket) => {
         const code = generatePrivateCode();
         rooms[index].privateCode = code;
       } else {
-        delete rooms[index].privateCode;
+        rooms[index].privateCode = '';
       }
     }
   });
 
-  socket.on('get_status', (room, callback) => {
+  socket.on('get_room_inf', (room, callback) => {
     let index = rooms.findIndex((target) => target.room === room);
-    if (index != -1) return callback(rooms[index].status);
-    return 'public';
+    return callback(rooms[index]);
   });
 
   socket.on('disconnect', () => {

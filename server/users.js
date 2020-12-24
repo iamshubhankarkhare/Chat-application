@@ -11,7 +11,8 @@ const addUser = ({ id, name, room }) => {
         // status of the room
         // public, private, locked
         status = "public";
-        rooms.push({room, part, status});
+        privateCode = '';
+        rooms.push({room, part, status,privateCode});
     }else{
         rooms[index].part = rooms[index].part + 1;
     }
