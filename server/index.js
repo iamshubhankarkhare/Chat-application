@@ -86,7 +86,7 @@ io.on('connection', (socket) => {
 
   socket.on('set_status', ({ room, status }) => {
     let index = rooms.findIndex((target) => target.room === room);
-    if (index != -1) {
+    if ((index != -1) && (rooms[index].status != status)){
       rooms[index].status = status;
       if (status === 'private') {
         const code = generatePrivateCode();
