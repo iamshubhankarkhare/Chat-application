@@ -7,14 +7,14 @@ const addUser = ({ id, name, room }) => {
     let index = rooms.findIndex((target) => target.room === room);
     if(index === -1){
         // participants in the room
-        part = 1;
+        part = [name];
         // status of the room
         // public, private, locked
         status = "public";
         privateCode = '';
         rooms.push({room, part, status,privateCode});
     }else{
-        rooms[index].part = rooms[index].part + 1;
+        rooms[index].part.push(name);
     }
     const existingUser = users.find((user) => user.room === room && user.name === name);
     index = (index === -1)?rooms.length - 1:index;
@@ -42,8 +42,9 @@ const removeUser = (id) => {
 
     if (index !== -1) {
         const index_rooms = rooms.findIndex((target) => target.room === users[index].room);
-        rooms[index_rooms].part = rooms[index_rooms].part - 1;
-        if(rooms[index_rooms].part === 0)
+        const index_part = rooms[index_rooms].part.findIndex((target) => target === users[index].name);
+        rooms[index_rooms].part.splice(index_part, 1)[0];
+        if(rooms[index_rooms].part.length === 0)
             rooms.splice(index_rooms, 1)[0];
         return users.splice(index, 1)[0];
     }

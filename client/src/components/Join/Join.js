@@ -167,7 +167,7 @@ const Join = () => {
           <h2>Public Rooms</h2>
           {rooms.map((room) => (
             (room.status === 'public')?<li onClick={() => setRoom(room.room)} key={room.room}>
-              Room {room.room} with Participants {room.part}
+              Room {room.room} with Participants {room.part.length}
             </li>:null
           ))}
         </ul>
