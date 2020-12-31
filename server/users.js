@@ -16,16 +16,7 @@ const addUser = ({ id, name, room }) => {
     }else{
         rooms[index].part.push(name);
     }
-    const existingUser = users.find((user) => user.room === room && user.name === name);
-    index = (index === -1)?rooms.length - 1:index;
-    
-    if (existingUser) {
-        return { error: "Sorry! This username is already taken" }
-    }
-    if (rooms[index].status === "locked"){
-        return {error: "Sorry! The room is locked, you cannot join"}
-    }
-
+   
     const user = { id, name, room };
     users.push(user);
     return { user };
@@ -33,6 +24,7 @@ const addUser = ({ id, name, room }) => {
 const checkUser = (({ name, room }) => {
     const existingUser = users.find((user) => user.room === room && user.name === name);
     const existingRoom = rooms.find((target) => target.room === room);
+    console.log(existingRoom);
     if (existingUser) {
         return { error: "Sorry! This username is already taken" };
     }
