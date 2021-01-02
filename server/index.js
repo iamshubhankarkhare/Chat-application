@@ -20,7 +20,7 @@ const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
 
-// app.use(router);
+app.use('/api', require('./router'));
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '/../client/build')));
@@ -86,7 +86,7 @@ io.on('connection', (socket) => {
 
   socket.on('set_status', ({ room, status }) => {
     let index = rooms.findIndex((target) => target.room === room);
-    if ((index != -1) && (rooms[index].status != status)){
+    if (index != -1 && rooms[index].status != status) {
       rooms[index].status = status;
       if (status === 'private') {
         const code = generatePrivateCode();
