@@ -25,7 +25,7 @@ const addUser = ({ id, name, room }) => {
 const checkUser = ({ name, room }) => {
   const existingUser = users.find((user) => user.room === room && user.name === name);
   const existingRoom = rooms.find((target) => target.room === room);
-  console.log(existingRoom);
+
   if (existingUser) {
       return { error: "Sorry! This username is already taken" };
   }

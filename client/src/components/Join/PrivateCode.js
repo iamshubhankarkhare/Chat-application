@@ -4,7 +4,7 @@ const PrivateCode = ({ room, name, privateCodeCheck }) => {
   const [privateCode, setPrivateCode] = React.useState('');
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(privateCodeCheck);
+    
     if (privateCodeCheck === privateCode) {
       // let user join the specific room, else give an error
       return window.location.replace(`/chat?name=${name}&room=${room}`);

@@ -62,7 +62,7 @@ const Join = () => {
 
         const res = await fetch(`/api/getRoomDetails/${room}`);
         const roomDetails = await res.json();
-        console.log('room', roomDetails);
+        
         if (roomDetails.status && roomDetails.status === 'private') {
           // bring popup to show the box
           setShowDialog(true);
