@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
-import ReactDOM from 'react';
 import './Join.css';
 import io from 'socket.io-client';
 import { TweenMax, Power2, Expo } from 'gsap';
+import PrivateCode from './PrivateCode';
 
 let socket;
 
@@ -12,6 +12,8 @@ const Join = () => {
   const [loginError, setLoginError] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [rooms, setRooms] = useState([]);
+  const [showPrivateDialog, setShowDialog] = useState(false);
+  const [privateCode, setPrivateCode] = useState('');
 
   let h1Ref = useRef(null);
   let roomsref = useRef(null);
@@ -43,7 +45,7 @@ const Join = () => {
   }, []);
 
   const handleSubmit = (e) => {
-    socket.emit('check', { name, room }, (error) => {
+    socket.emit('check', { name, room }, async (error) => {
       if (error) {
         setLoginError(error.error);
         setSubmitting(false);
@@ -57,25 +59,35 @@ const Join = () => {
       if (!error && name && room) {
         setLoginError('');
         setSubmitting(true);
-        TweenMax.to(loginBtn.current, {
-          y: '-150px',
-          backgroundColor: '#003459',
-        });
-        TweenMax.to(nameRef.current, 1.5, {
-          opacity: 0,
-        });
-        TweenMax.to(roomRef.current, 1.5, {
-          opacity: 0,
-        });
-        TweenMax.to(h1Ref.current, 1.5, {
-          opacity: 0,
-        });
-        TweenMax.to(roomsref.current, 1.5, {
-          opacity: 0,
-        });
-        setTimeout(() => {
-          window.location.replace(`/chat?name=${name}&room=${room}`);
-        }, 2000);
+
+        const res = await fetch(`/api/getRoomDetails/${room}`);
+        const roomDetails = await res.json();
+        
+        if (roomDetails.status && roomDetails.status === 'private') {
+          // bring popup to show the box
+          setShowDialog(true);
+          setPrivateCode(roomDetails.privateCode);
+        } else {
+          TweenMax.to(loginBtn.current, {
+            y: '-150px',
+            backgroundColor: '#003459',
+          });
+          TweenMax.to(nameRef.current, 1.5, {
+            opacity: 0,
+          });
+          TweenMax.to(roomRef.current, 1.5, {
+            opacity: 0,
+          });
+          TweenMax.to(h1Ref.current, 1.5, {
+            opacity: 0,
+          });
+          TweenMax.to(roomsref.current, 1.5, {
+            opacity: 0,
+          });
+          setTimeout(() => {
+            window.location.replace(`/chat?name=${name}&room=${room}`);
+          }, 2000);
+        }
       }
     });
   };
@@ -165,12 +177,14 @@ const Join = () => {
           Create or Join a Present Room
         </h1>
         <ul id='RoomList' ref={roomsref}>
-          <h2>Present Rooms</h2>
-          {rooms.map((room) => (
-            <li onClick={() => setRoom(room.room)} key={room.room}>
-              Room {room.room} with Participants {room.part}
-            </li>
-          ))}
+          <h2>Public Rooms</h2>
+          {rooms.map((room) =>
+            room.status === 'public' ? (
+              <li onClick={() => setRoom(room.room)} key={room.room}>
+                Room {room.room} with Participants {room.part}
+              </li>
+            ) : null
+          )}
         </ul>
         <div ref={nameRef}>
           {loginError ? <h3 className='errorh3'>{`${loginError}`}</h3> : null}
@@ -202,6 +216,9 @@ const Join = () => {
           {submitting ? 'Welcome' : 'Sign In'}
         </button>
       </div>
+      {showPrivateDialog && (
+        <PrivateCode privateCodeCheck={privateCode} name={name} room={room} />
+      )}
     </div>
   );
 };
