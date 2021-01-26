@@ -68,6 +68,18 @@ io.on("connection", (socket) => {
     }
     callback();
   });
+  socket.on("sendImg", (data, callback) => {
+    const user = getUser(socket.id);
+    if (user) {
+      io.to(user.room).emit("message", {
+        user: user.name,
+        text: data.message,
+        img:data.img,
+        time: data.time,
+      });
+    }
+    callback();
+  });
 
   socket.on("typing", (data) => {
     if (data.typing === true) {
