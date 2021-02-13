@@ -28,6 +28,7 @@ const Chat = ({ location }) => {
   const [isCopied, setIsCopied] = useState('');
   const [roomType, setRoomType] = useState('public');
   const [code, setCode] = useState('');
+  const [img, setimg] = useState();
 
   const ENDPOINT =
     process.env.NODE_ENV === 'development'
@@ -73,10 +74,25 @@ const Chat = ({ location }) => {
       setUsers(users);
     });
   }, [messages, name]);
+  console.log(messages)
 
   const sendMessage = (event) => {
+    
     event.preventDefault();
-    if (message) {
+    
+    if(img && message){
+      console.log(event,img);
+      socket.emit("sendImg",{
+        message: message,
+        time: new Date().getHours() + ':' + new Date().getMinutes(),
+        img:img
+      },
+      () => {
+        setMessage('');
+        setimg()
+      });
+    }
+    else if (message) {
       // message.time = new Date().toISOString();
       setIsTyping(false);
       socket.emit(
@@ -212,6 +228,7 @@ const Chat = ({ location }) => {
           handleKeydown={handleKeydown}
           isEmoji={isEmoji}
           addEmoji={addEmoji}
+          setimg={setimg}
         />
       </div>
     </div>
